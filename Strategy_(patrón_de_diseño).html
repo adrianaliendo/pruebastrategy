@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html dir="ltr" class="client-js ve-not-available" lang="es"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><script src="Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29_archivos/load_002.php" async=""></script><script src="Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29_archivos/index_004.php" async=""></script><script src="Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29_archivos/index_002.php" async=""></script><script src="Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29_archivos/load.php" async=""></script><script src="Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29_archivos/checkLoggedIn" async=""></script>
+<meta charset="UTF-8">
+<title>Strategy (patrón de diseño) - Wikipedia, la enciclopedia libre</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+<meta name="generator" content="MediaWiki 1.23wmf21">
+<link rel="alternate" href="android-app://org.wikipedia/http/es.m.wikipedia.org/wiki/Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29">
+<link rel="alternate" type="application/x-wiki" title="Editar" href="http://es.wikipedia.org/w/index.php?title=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;action=edit">
+<link rel="edit" title="Editar" href="http://es.wikipedia.org/w/index.php?title=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;action=edit">
+<link rel="apple-touch-icon" href="http://bits.wikimedia.org/apple-touch/wikipedia.png">
+<link rel="shortcut icon" href="http://bits.wikimedia.org/favicon/wikipedia.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="http://es.wikipedia.org/w/opensearch_desc.php" title="Wikipedia (es)">
+<link rel="EditURI" type="application/rsd+xml" href="http://es.wikipedia.org/w/api.php?action=rsd">
+<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/">
+<link rel="alternate" type="application/atom+xml" title="Canal Atom de Wikipedia" href="http://es.wikipedia.org/w/index.php?title=Especial:CambiosRecientes&amp;feed=atom">
+<link rel="canonical" href="http://es.wikipedia.org/wiki/Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29">
+<link rel="stylesheet" href="Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29_archivos/load.css">
+<style>
+@media print{#centralNotice{display:none}}
+/* cache key: eswiki:resourceloader:filter:minify-css:7:ddb0c98a055632ae8e349c9cf48ac703 */
+.tipsy{padding:5px;position:absolute;z-index:100000;cursor:default}.tipsy-inner{padding:5px 8px 4px 8px; background-color:#ffffff;border:solid 1px #a7d7f9;color:black;max-width:15em;border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px; }.tipsy-arrow{position:absolute;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAALAgMAAADUwp+1AAAACVBMVEX5+fmn1/n///9s6BFKAAAAAXRSTlMAQObYZgAAACpJREFUCB1jZBD4wMiQMoeRcUU4I9uSaYxSE54xZjn8AtMgPkgcJA9UBwAeDw1Qrb3pVAAAAABJRU5ErkJggg==) no-repeat top left;background:url(//bits.wikimedia.org/static-1.23wmf21/resources/jquery.tipsy/images/tipsy.png?2014-04-03T16:21:40Z) no-repeat top left!ie;width:11px;height:6px} .tipsy-n .tipsy-arrow{top:0px;left:50%;margin-left:-5px} .tipsy-nw .tipsy-arrow{top:1px;left:10px} .tipsy-ne .tipsy-arrow{top:1px;right:10px} .tipsy-s .tipsy-arrow{bottom:0px;left:50%;margin-left:-5px;background-position:bottom left} .tipsy-sw .tipsy-arrow{bottom:0px;left:10px;background-position:bottom left} .tipsy-se .tipsy-arrow{bottom:0px;right:10px;background-position:bottom left} .tipsy-e .tipsy-arrow{top:50%;margin-top:-5px;right:1px;width:5px;height:11px;background-position:top right} .tipsy-w .tipsy-arrow{top:50%;margin-top:-5px;left:0px;width:6px;height:11px}
+/* cache key: eswiki:resourceloader:filter:minify-css:7:4c7cc41b5acfda60692212010ad31180 */
+.uls-menu a{cursor:pointer}.uls-menu.callout .caret-before{border-top:20px solid transparent;border-right:20px solid #C9C9C9;border-bottom:20px solid transparent;display:inline-block;left:-21px;top:30px;position:absolute}.uls-menu.callout .caret-after{border-top:20px solid transparent;border-right:20px solid #FCFCFC;border-bottom:20px solid transparent;display:inline-block;left:-20px;top:30px;position:absolute}.uls-ui-languages button{width:23%;text-overflow:ellipsis;margin-right:4%}button.uls-more-languages{width:auto}.settings-title{font-size:11pt}.settings-text{color:#555555;font-size:9pt}div.display-settings-block:hover .settings-text{color:#252525}
+/* cache key: eswiki:resourceloader:filter:minify-css:7:22d1681fa868b4ff4fbcb1ec1e58a9ea */
+@-webkit-keyframes centralAuthPPersonalAnimation{0%{opacity:0;-webkit-transform:translateY(-20px)}100%{opacity:1;-webkit-transform:translateY(0)}}@-moz-keyframes centralAuthPPersonalAnimation{0%{opacity:0;-moz-transform:translateY(-20px)}100%{opacity:1;-moz-transform:translateY(0)}}@-o-keyframes centralAuthPPersonalAnimation{0%{opacity:0;-o-transform:translateY(-20px)}100%{opacity:1;-o-transform:translateY(0)}}@keyframes centralAuthPPersonalAnimation{0%{opacity:0;transform:translateY(-20px)}100%{opacity:1;transform:translateY(0)}}.centralAuthPPersonalAnimation{-webkit-animation-duration:1s;-moz-animation-duration:1s;-o-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;-moz-animation-fill-mode:both;-o-animation-fill-mode:both;animation-fill-mode:both;-webkit-animation-name:centralAuthPPersonalAnimation;-moz-animation-name:centralAuthPPersonalAnimation;-o-animation-name:centralAuthPPersonalAnimation;animation-name:centralAuthPPersonalAnimation}
+/* cache key: eswiki:resourceloader:filter:minify-css:7:0dcacc990dd02e7db9669ab3090b80f1 */
+.mw-editsection{white-space:nowrap;padding-right:0.25em; unicode-bidi:-moz-isolate;unicode-bidi:-webkit-isolate;unicode-bidi:isolate}.mw-editsection-divider{color:#555} .mw-content-ltr .mw-editsection-expanded .mw-editsection-bracket:first-of-type,.mw-content-rtl .mw-editsection-expanded .mw-editsection-bracket:not(:first-of-type){margin-left:-0.25em;margin-right:0.25em;color:#555} .mw-content-rtl .mw-editsection-expanded .mw-editsection-bracket:first-of-type,.mw-content-ltr .mw-editsection-expanded .mw-editsection-bracket:not(:first-of-type){margin-right:-0.25em;margin-left:0.25em;color:#555}.ve-tabmessage-appendix{font-size:0.7em;vertical-align:top;line-height:1.43em;padding-left:0.5em; background-image:none !important;display:inline !important}
+/* cache key: eswiki:resourceloader:filter:minify-css:7:10d5f32d441941e72673fc73cdfe14a9 */
+.wbc-editpage{list-style:none none;text-align:right;padding-right:.5em !important}.wbc-editpage > a{padding-left:11px;background:no-repeat left center}.wbc-editpage > a:link,.wbc-editpage > a:visited{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKBAMAAAB/HNKOAAAAD1BMVEUZAAD///95eXmqqqrY2NjEIQ0cAAAAAXRSTlMAQObYZgAAACdJREFUCNdjYGBgYGIAASUFENNJCUiqmADZTM5OqExFFZAKRSG4YgBjcwODynSgDwAAAABJRU5ErkJggg==);background-image:url(//bits.wikimedia.org/static-1.23wmf21/extensions/Wikidata/extensions/Wikibase/client/resources/images/WBC-Asset-Pencil.png?2014-04-03T16:31:40Z)!ie;color:#797979 !important}.wbc-editpage > a:hover{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKBAMAAAB/HNKOAAAAD1BMVEWBAADY2Nj///8GRa0zZrtW2AECAAAAAXRSTlMAQObYZgAAACdJREFUCNdjYGBgYGYAAWMDEFPYGEgaOgLZzCLCqEwjQ5AKI2W4YgBg5QOTQPzBuAAAAABJRU5ErkJggg==);background-image:url(//bits.wikimedia.org/static-1.23wmf21/extensions/Wikidata/extensions/Wikibase/client/resources/images/WBC-Asset-Pencil-Hover.png?2014-04-03T16:31:40Z)!ie;color:#0645AD !important}
+/* cache key: eswiki:resourceloader:filter:minify-css:7:47656780fec6b0d6bbcdb17d6b3cee0c */</style><style>
+.cabecera.animal{background:url(//upload.wikimedia.org/wikipedia/commons/2/21/Infobox_animalia_-_test.png) no-repeat top right }.cabecera.arquería{background:url(//upload.wikimedia.org/wikipedia/commons/3/35/Picto_infobox_archery.png) no-repeat top right }.cabecera.astronomía{background:url(//upload.wikimedia.org/wikipedia/commons/7/71/Picto_infobox_astronomy.png) no-repeat top right }.cabecera.atletismo{background:url(//upload.wikimedia.org/wikipedia/commons/5/5a/Athletics_infobox.png) no-repeat top right }.cabecera.automovilismo{background:url(//upload.wikimedia.org/wikipedia/commons/a/af/Picto_infobox_sport_auto.png) no-repeat top right }.cabecera.autor{background:url(//upload.wikimedia.org/wikipedia/commons/1/1e/Picto_infobox_auteur.png) no-repeat top right }.cabecera.bacteria{background:url(//upload.wikimedia.org/wikipedia/commons/d/dd/Infobox_bacteria.png) no-repeat top right }.cabecera.baloncesto{background:url(//upload.wikimedia.org/wikipedia/commons/thumb/5/56/Pictogram_infobox_basketball.svg/120px-Pictogram_infobox_basketball.svg.png) no-repeat top right }.cabecera.balonmano{background:url(//upload.wikimedia.org/wikipedia/commons/e/e3/Picto_infobox_handbal.png) no-repeat top right }.cabecera.bandera{background:url(//upload.wikimedia.org/wikipedia/commons/f/f7/Picto_infobox_flag.png) no-repeat top right }.cabecera.béisbol{background:url(//upload.wikimedia.org/wikipedia/commons/2/24/Picto_infobox_baseball2.png) no-repeat top right }.cabecera.boxeo{background:url(//upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Picto_infobox_boxing.svg/120px-Picto_infobox_boxing.svg.png) no-repeat top right }.cabecera.canadá{background:url(//upload.wikimedia.org/wikipedia/commons/6/6a/Picto_infobox_Canada.png) no-repeat top right }.cabecera.cerveza{background:url(//upload.wikimedia.org/wikipedia/commons/0/04/Picto_infobox_beer.png) no-repeat top right }.cabecera.ciclismo{background:url(//upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Picto_infobox_cycling.svg/120px-Picto_infobox_cycling.svg.png) no-repeat top right }.cabecera.ciencia-ficción{background:url(//upload.wikimedia.org/wikipedia/commons/e/ed/Picto_infobox_fliyingsaucer.png) no-repeat top right }.cabecera.cine{background:url(//upload.wikimedia.org/wikipedia/commons/e/ea/Picto_infobox_cinema.png) no-repeat top right }.cabecera.cómics{background:url(//upload.wikimedia.org/wikipedia/commons/2/2c/Picto_infobox_comicballoon.png) no-repeat top right }.cabecera.comunicación{background:url(//upload.wikimedia.org/wikipedia/commons/a/a2/Picto_infobox_antenna.png) no-repeat top right }.cabecera.conflicto{background:url(//upload.wikimedia.org/wikipedia/commons/a/a5/Picto_infobox_conflict.png) no-repeat top right }.cabecera.deporte{background:url(//upload.wikimedia.org/wikipedia/commons/8/8e/Picto_infobox_Olympic.png) no-repeat top right }.cabecera.españa{background:url(//upload.wikimedia.org/wikipedia/commons/1/11/Picto_Infobox_Coat_of_Arms_of_Spain.png) no-repeat top right }.cabecera.esquí{background:url(//upload.wikimedia.org/wikipedia/commons/thumb/0/02/Picto_infobox_alpine_skiing.svg/120px-Picto_infobox_alpine_skiing.svg.png) no-repeat top right }.cabecera.filosofía{background:url(//upload.wikimedia.org/wikipedia/commons/d/dd/Picto_infobox_philosopher.png) no-repeat top right }.cabecera.física{background:url(//upload.wikimedia.org/wikipedia/commons/d/d1/Picto_infobox_physics.png) no-repeat top right }.cabecera.fungi{background:url(//upload.wikimedia.org/wikipedia/commons/7/79/Picto_infobox_fungus.png) no-repeat top right }.cabecera.fútbol{background:url(//upload.wikimedia.org/wikipedia/commons/3/3c/Picto_infobox_fotbal.png) no-repeat top right }.cabecera.hockey{background:url(//upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Picto_Infobox_Ice_hockey.svg/120px-Picto_Infobox_Ice_hockey.svg.png) no-repeat top right }.cabecera.hombremujer{background:url(//upload.wikimedia.org/wikipedia/commons/8/82/Picto_infobox_manwoman.png) no-repeat top right }.cabecera.humano{background:url(//upload.wikimedia.org/wikipedia/commons/4/48/Picto_infobox_character.png) no-repeat top right }.cabecera.informática{background:url(//upload.wikimedia.org/wikipedia/commons/a/ae/Picto-infoboxinfo.png) no-repeat top right }.cabecera.ingeniería{background:url(//upload.wikimedia.org/wikipedia/commons/f/f9/Infobox_gear.png) no-repeat top right }.cabecera.libro{background:url(//upload.wikimedia.org/wikipedia/commons/4/42/Picto_infobox_book.png) no-repeat top right }.cabecera.lucha{background:url(//upload.wikimedia.org/wikipedia/commons/0/04/Picto_infobox_wrestling.png) no-repeat top right }.cabecera.mapa{background:url(//upload.wikimedia.org/wikipedia/commons/7/7a/Picto_infobox_map.png) no-repeat top right }.cabecera.medicina{background:url(//upload.wikimedia.org/wikipedia/commons/2/23/Picto_infobox_med.png) no-repeat top right }.cabecera.militar{background:url(//upload.wikimedia.org/wikipedia/commons/0/03/Picto_infobox_military.png) no-repeat top right }.cabecera.montañismo{background:url(//upload.wikimedia.org/wikipedia/commons/thumb/8/89/Picto_infobox_climbing.svg/120px-Picto_infobox_climbing.svg.png) no-repeat top right }.cabecera.motociclismo{background:url(//upload.wikimedia.org/wikipedia/commons/c/ca/Infobox_Motorcycling_pictogram.png) no-repeat top right }.cabecera.música{background:url(//upload.wikimedia.org/wikipedia/commons/6/60/Picto_infobox_music.png) no-repeat top right }.cabecera.naciones-unidas{background:url(//upload.wikimedia.org/wikipedia/commons/3/3a/Picto_infobox_UN.png) no-repeat top right }.cabecera.patinaje{background:url(//upload.wikimedia.org/wikipedia/commons/f/f5/Infobox_Inline_speed_skating_pictogram.png) no-repeat top right }.cabecera.perro{background:url(//upload.wikimedia.org/wikipedia/commons/2/21/Infobox_animalia_-_test.png) no-repeat top right }.cabecera.piragüismo{background:url(//upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Canoeing_%28flatwater%29_pictogram.svg/45px-Canoeing_%28flatwater%29_pictogram.svg.png) no-repeat top right }.cabecera.planta{background:url(//upload.wikimedia.org/wikipedia/commons/7/79/Infobox_plantae.png) no-repeat top right }.cabecera.puente{background:url(//upload.wikimedia.org/wikipedia/commons/8/87/Picto_infobox_bridge.png) no-repeat top right }.cabecera.química{background:url(//upload.wikimedia.org/wikipedia/commons/e/e9/Picto_infobox_chemistry_45px.png) no-repeat top right }.cabecera.radio{background:url(//upload.wikimedia.org/wikipedia/commons/4/4c/Picto_infobox_radio.png) no-repeat top right }.cabecera.regata{background:url(//upload.wikimedia.org/wikipedia/commons/f/f4/Infobox_Sailing_pictogram.png) no-repeat top right }.cabecera.remo{background:url(//upload.wikimedia.org/wikipedia/commons/thumb/5/57/Rowing_pictogram.svg/45px-Rowing_pictogram.svg.png) no-repeat top right }.cabecera.revista{background:url(//upload.wikimedia.org/wikipedia/commons/c/c4/Picto_infobox_magazine.png) no-repeat top right }.cabecera.rugby{background:url(//upload.wikimedia.org/wikipedia/commons/0/06/Picto_Infobox_Rugby.png) no-repeat top right }.cabecera.snowboarding{background:url(//upload.wikimedia.org/wikipedia/commons/5/59/Infobox_Snowboarding_pictogram.png) no-repeat top right }.cabecera.surf{background:url(//upload.wikimedia.org/wikipedia/commons/3/31/Infobox_Surfing_pictogram.png) no-repeat top right }.cabecera.teatro{background:url(//upload.wikimedia.org/wikipedia/commons/3/37/Picto_infobox_masks.png) no-repeat top right }.cabecera.televisión{background:url(//upload.wikimedia.org/wikipedia/commons/b/b1/Picto_info_device_tv.png) no-repeat bottom right }.cabecera.tenis{background:url(//upload.wikimedia.org/wikipedia/commons/9/92/Infobox_Tennis_pictogram.png) no-repeat bottom right }.cabecera.transbordador{background:url(//upload.wikimedia.org/wikipedia/commons/e/ee/Picto_infobox_rocket.png) no-repeat top right }.cabecera.universidad{background:url(//upload.wikimedia.org/wikipedia/commons/6/66/Picto_infobox_universit%C3%A9.png) no-repeat top right }.cabecera.videojuego{background:url(//upload.wikimedia.org/wikipedia/commons/2/2d/Picto_infobox_gamepad.png) no-repeat bottom right }.cabecera.vino{background:url(//upload.wikimedia.org/wikipedia/commons/6/66/Picto_info_grape.png) no-repeat top right }.cabecera.virus{background:url(//upload.wikimedia.org/wikipedia/commons/d/dc/Picto_infobox_virus.png) no-repeat top right }.cabecera.voleibol{background:url(//upload.wikimedia.org/wikipedia/commons/3/39/Picto_infobox_volleyball.png) no-repeat top right }.cabecera.waterpolo{background:url(//upload.wikimedia.org/wikipedia/commons/9/99/Picto_infobox_water_polo.png) no-repeat top right }.media.audio{background:url(//upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Gnome-speakernotes.png/35px-Gnome-speakernotes.png) no-repeat top left }.media.video{background:url(//upload.wikimedia.org/wikipedia/commons/thumb/2/20/Tango-video-x-generic.png/35px-Tango-video-x-generic.png) no-repeat top left }
+/* cache key: eswiki:resourceloader:filter:minify-css:7:a53122dad759dd82c22833c212e04270 */
+#p-lang .uls-settings-trigger{background:transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAgCAMAAAAVMLmlAAAAA3NCSVQICAjb4U/gAAAACXBIWXMAAA3XAAAN1wFCKJt4AAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAALpQTFRF////W1tbgICAWVlZgICAUVFRgICAWVlZhYWFUlJShYWFVFRUgYGBVVVVgYGBVVVVgICAVFRUVVVVVlZWgYGBgICAVFRUgYGBVFRUgICAgYGBVVVVVVVVgYGBVlZWgYGBVFRUgICAVFRUgICAVVVVgICAVlZWgICAVFRUgICAVVVVgICAVFRUgICAVlZWgICAVVVVgICAVVVVgICAVVVVgICAVVVVgICAVVVVgICAVVVVgICAVVVVgICA9Fa9bgAAADx0Uk5TAA4OFBQWFhcXGRlJSUtLWlpbXV9fYGFhZGRlZmlpa2twcIiIioqPj5GRn5+goKGh6+vv7/Dw+fn8/P7+YuRUVgAAAOlJREFUGBmNwcdWAgEURMFLFCUaAcWAEhQYHBRmCN3//1u+BYcVC6s4p2U3OLrrVxN7Xn7uELoH5w65Dx1g6JNnoLazfz++VnZehkZir4pQ3NjzBg5TwtgBhzFh6kDr294UobiykxZc7ezVdLyx8yrw6pM+8GjnDjsf7gj3/WpiJ7Vhl6OW3eC/mlKdo5teZSHNSoM24XqvTCHTvg0MdDIASpn08/6ZSlkJ6jMpLUBhLc3qKEwIIwUURoSJAs2ltC5AIZUWTbjcSulktJayCvCikx7wJG0VttrfEp5eLpfS4uLtgaOmVOeMP8BAM9RClMO9AAAAAElFTkSuQmCC) no-repeat right top;background:transparent url(//bits.wikimedia.org/static-1.23wmf21/extensions/UniversalLanguageSelector/resources/css/../images/cog-sprite.png?2014-04-03T16:30:00Z) no-repeat right top!ie;background-image:-webkit-linear-gradient(transparent,transparent),url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIxNCIgaGVpZ2h0PSIzMiI+PGRlZnM+PHBhdGggZD0iTTEzLjU4MiA2LjYzMmgtMS4wNjRjLS4xMzMtLjUzOC0uMzU0LTEuMDY1LS42NDUtMS41NTJsLjc1LS43NWMuMTY0LS4xNjQuMTY0LS40MjkgMC0uNTkzbC0xLjM1OS0xLjM2Yy0uMTY0LS4xNjQtLjQzLS4xNjQtLjU5NCAwbC0uNzUuNzVjLS40OS0uMjk0LTEuMDEyLS41MTItMS41NTEtLjY0NXYtMS4wNjRjMC0uMjMxLS4xODctLjQxOC0uNDE5LS40MThoLTEuOTE4Yy0uMjMxIDAtLjQxOC4xODctLjQxOC40MTh2MS4wNjNjLS41NDEuMTM1LTEuMDYyLjM1Mi0xLjU1Mi42NDZsLS43NS0uNzVjLS4xNjQtLjE2NC0uNDI5LS4xNjQtLjU5MyAwbC0xLjM2IDEuMzZjLS4xNjQuMTY0LS4xNjQuNDI5IDAgLjU5M2wuNzUuNzVjLS4yOTIuNDg4LS40OTQgMS4wMTUtLjYyNyAxLjU1MWgtMS4wNjRjLS4yMzEgMC0uNDE4LjE4Ny0uNDE4LjQxOXYxLjkxOGMwIC4yMzEuMTg3LjQxOC40MTguNDE4aDEuMDQ2Yy4xMzQuNTQyLjM1MSAxLjA2Mi42NDUgMS41NTFsLS43NS43NWMtLjE2NC4xNjQtLjE2NC40MjkgMCAuNTkzbDEuMzYgMS4zNmMuMTY0LjE2NC40MjkuMTY0LjU5MyAwbC43NS0uNzVjLjQ5MS4yOTYgMS4wMS40OTMgMS41NTEuNjI3djEuMDYzYy4wMDEuMjMzLjE4OC40Mi40MTkuNDJoMS45MThjLjIzMSAwIC40MTktLjE4Ny40MTktLjQxOHYtMS4wNjNjLjU0Mi0uMTM0IDEuMDYxLS4zMzMgMS41NTEtLjYyN2wuNzUuNzVjLjE2NC4xNjQuNDMuMTY0LjU5NCAwbDEuMzU5LTEuMzZjLjE2NC0uMTY0LjE2NC0uNDI5IDAtLjU5M2wtLjc1LS43NWMuMjk1LS40ODkuNTEtMS4wMTMuNjQ1LTEuNTUxaDEuMDY0Yy4yMy0uMDAyLjQxOC0uMTg5LjQxOC0uNDJ2LTEuOTE4YzAtLjIzMi0uMTg4LS40MTgtLjQxOC0uNDE4em0tNi41ODIgNC4wMTJjLTEuNDYxIDAtMi42NDUtMS4xODQtMi42NDUtMi42NDRzMS4xODQtMi42NDQgMi42NDUtMi42NDQgMi42NDUgMS4xODQgMi42NDUgMi42NDQtMS4xODQgMi42NDQtMi42NDUgMi42NDR6IiBpZD0iYSIvPjwvZGVmcz48dXNlIHhsaW5rOmhyZWY9IiNhIiBmaWxsPSIjODA4MDgwIi8+PHVzZSB4bGluazpocmVmPSIjYSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAxNikiIGZpbGw9IiM1NTUiLz48L3N2Zz4=);background-image:-webkit-linear-gradient(transparent,transparent),url(//bits.wikimedia.org/static-1.23wmf21/extensions/UniversalLanguageSelector/resources/css/../images/cog-sprite.svg?2014-04-03T16:30:00Z)!ie;background-image:linear-gradient(transparent,transparent),url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIxNCIgaGVpZ2h0PSIzMiI+PGRlZnM+PHBhdGggZD0iTTEzLjU4MiA2LjYzMmgtMS4wNjRjLS4xMzMtLjUzOC0uMzU0LTEuMDY1LS42NDUtMS41NTJsLjc1LS43NWMuMTY0LS4xNjQuMTY0LS40MjkgMC0uNTkzbC0xLjM1OS0xLjM2Yy0uMTY0LS4xNjQtLjQzLS4xNjQtLjU5NCAwbC0uNzUuNzVjLS40OS0uMjk0LTEuMDEyLS41MTItMS41NTEtLjY0NXYtMS4wNjRjMC0uMjMxLS4xODctLjQxOC0uNDE5LS40MThoLTEuOTE4Yy0uMjMxIDAtLjQxOC4xODctLjQxOC40MTh2MS4wNjNjLS41NDEuMTM1LTEuMDYyLjM1Mi0xLjU1Mi42NDZsLS43NS0uNzVjLS4xNjQtLjE2NC0uNDI5LS4xNjQtLjU5MyAwbC0xLjM2IDEuMzZjLS4xNjQuMTY0LS4xNjQuNDI5IDAgLjU5M2wuNzUuNzVjLS4yOTIuNDg4LS40OTQgMS4wMTUtLjYyNyAxLjU1MWgtMS4wNjRjLS4yMzEgMC0uNDE4LjE4Ny0uNDE4LjQxOXYxLjkxOGMwIC4yMzEuMTg3LjQxOC40MTguNDE4aDEuMDQ2Yy4xMzQuNTQyLjM1MSAxLjA2Mi42NDUgMS41NTFsLS43NS43NWMtLjE2NC4xNjQtLjE2NC40MjkgMCAuNTkzbDEuMzYgMS4zNmMuMTY0LjE2NC40MjkuMTY0LjU5MyAwbC43NS0uNzVjLjQ5MS4yOTYgMS4wMS40OTMgMS41NTEuNjI3djEuMDYzYy4wMDEuMjMzLjE4OC40Mi40MTkuNDJoMS45MThjLjIzMSAwIC40MTktLjE4Ny40MTktLjQxOHYtMS4wNjNjLjU0Mi0uMTM0IDEuMDYxLS4zMzMgMS41NTEtLjYyN2wuNzUuNzVjLjE2NC4xNjQuNDMuMTY0LjU5NCAwbDEuMzU5LTEuMzZjLjE2NC0uMTY0LjE2NC0uNDI5IDAtLjU5M2wtLjc1LS43NWMuMjk1LS40ODkuNTEtMS4wMTMuNjQ1LTEuNTUxaDEuMDY0Yy4yMy0uMDAyLjQxOC0uMTg5LjQxOC0uNDJ2LTEuOTE4YzAtLjIzMi0uMTg4LS40MTgtLjQxOC0uNDE4em0tNi41ODIgNC4wMTJjLTEuNDYxIDAtMi42NDUtMS4xODQtMi42NDUtMi42NDRzMS4xODQtMi42NDQgMi42NDUtMi42NDQgMi42NDUgMS4xODQgMi42NDUgMi42NDQtMS4xODQgMi42NDQtMi42NDUgMi42NDR6IiBpZD0iYSIvPjwvZGVmcz48dXNlIHhsaW5rOmhyZWY9IiNhIiBmaWxsPSIjODA4MDgwIi8+PHVzZSB4bGluazpocmVmPSIjYSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAxNikiIGZpbGw9IiM1NTUiLz48L3N2Zz4=);background-image:linear-gradient(transparent,transparent),url(//bits.wikimedia.org/static-1.23wmf21/extensions/UniversalLanguageSelector/resources/css/../images/cog-sprite.svg?2014-04-03T16:30:00Z)!ie;height:16px;width:14px;float:right;cursor:pointer}.skin-vector #p-lang .uls-settings-trigger{ margin-top:3px}#p-lang .uls-settings-trigger:hover{background-position:right -16px}
+/* cache key: eswiki:resourceloader:filter:minify-css:7:e4df9e5c357accbceadca487df1b2b3e */
+.mw-collapsible-toggle{float:right;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none} caption .mw-collapsible-toggle{float:none} li .mw-collapsible-toggle{float:none} .mw-collapsible-toggle-li{list-style:none}
+/* cache key: eswiki:resourceloader:filter:minify-css:7:6c1d24e90626cec584f0869483f983e7 */
+.suggestions{overflow:hidden;position:absolute;top:0;left:0;width:0;border:none;z-index:1099;padding:0;margin:-1px -1px 0 0} html > body .suggestions{margin:-1px 0 0 0}.suggestions-special{position:relative;background-color:white;cursor:pointer;border:solid 1px #aaaaaa;padding:0;margin:0;margin-top:-2px;display:none;padding:0.25em 0.25em;line-height:1.25em}.suggestions-results{background-color:white;cursor:pointer;border:solid 1px #aaaaaa;padding:0;margin:0}.suggestions-result{color:black;margin:0;line-height:1.5em;padding:0.01em 0.25em;text-align:left}.suggestions-result-current{background-color:#4C59A6;color:white}.suggestions-special .special-label{color:gray;text-align:left}.suggestions-special .special-query{color:black;font-style:italic;text-align:left}.suggestions-special .special-hover{background-color:silver}.suggestions-result-current .special-label,.suggestions-result-current .special-query{color:white}.autoellipsis-matched,.highlight{font-weight:bold}
+/* cache key: eswiki:resourceloader:filter:minify-css:7:9780324491b653a3780e2d029bdc140c */
+.postedit-container{margin:0 auto;position:fixed;top:0;height:0;left:50%;z-index:1000;font-size:13px}.postedit-container:hover{cursor:pointer}.postedit{position:relative;top:0.6em;left:-50%;padding:.6em 3.6em .6em 1.1em;line-height:1.5625em;color:#626465;background-color:#f4f4f4;border:1px solid #dcd9d9;text-shadow:0 0.0625em 0 rgba(255,255,255,0.5);border-radius:5px;-webkit-box-shadow:0 2px 5px 0 #ccc;box-shadow:0 2px 5px 0 #ccc;-webkit-transition:all 0.25s ease-in-out;-moz-transition:all 0.25s ease-in-out;-ms-transition:all 0.25s ease-in-out;-o-transition:all 0.25s ease-in-out;transition:all 0.25s ease-in-out}.skin-monobook .postedit{top:6em !important}.postedit-faded{opacity:0}.postedit-icon{padding-left:41px;  line-height:25px;background-repeat:no-repeat;background-position:8px 50%}.postedit-icon-checkmark{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABblBMVEUAAAD///////9PfTf///80aRdTgjn///9Feij///////////9Rfzf///////////9PfjZRgDh1o1xOfTb///////+bwYqLtnj///////9PfTa82K////9WhT6YxIL///9QgDdTgzr////////j7uDl7eLq8efi693k7OH///////9UhjuBr2rp9uRUhjr///9YljVKgir///9WiTlYjT3////9/v57vFlbkT5PjC9dlD/5/fhuq09stUTs9uhxuElctCpfnT1huDFloEZloUZmpENmvDZpvDxpvTxqvjxrvT5rvT9rwTxsqktswD5uwkBvuUdxw0NztFBztU9ztVBzwkp0tlJ1xkd2t1R3uVR4w1F4xk54x014yE15uVZ5v1R5xVB6v1R7yFJ8wVh9xVl9yFR9yVd9ylN+xVh+yFd/x1l/yFeAylmEx1+Ny2uY0Hqe04Wj1Ymv3Ze33qLD47TJ5L3O6cPU7Mrq9eb2+/Q4j37OAAAAQHRSTlMAAQIEBAUFBQwPFB4fJCUoKiosQEhJS01RUlZZXmdydXaChYuSlJSWmJmoq6uur8LExcvM19fg5ejt8fX2+Pr7SljgewAAAKpJREFUGBkFwQNCAwAAAMDLtl3LtrG4rWXbtvX77gAgZ6grFwC0bhwNVgKgdPZx8b0dgLi+s7Wn0VoAqpfOI9+BNADZI7fLrz2pSEwGHZuH+78lSK8ZLkLezF3ooyUG3VPXq2USei9WngeyoG195yBYWDF3E/2pAhl1e9Gr8bGT+bfOFCC2fnvh4X7rcqIAQNNu+HT6sxkAjceTL/2ZAIhv+PorBwBJxfkA//dFHSCBy/UTAAAAAElFTkSuQmCC);background-image:url(//bits.wikimedia.org/static-1.23wmf21/resources/mediawiki.action/images/green-checkmark.png?2014-04-03T16:21:40Z)!ie;background-position:left}.postedit-close{position:absolute;padding:0 .8em;right:0;top:0;font-size:1.25em;font-weight:bold;line-height:2.3em;color:black;text-shadow:0 0.0625em 0 white;text-decoration:none;opacity:0.2;filter:alpha(opacity=20)}.postedit-close:hover{color:black;text-decoration:none;opacity:0.4;filter:alpha(opacity=40)}
+/* cache key: eswiki:resourceloader:filter:minify-css:7:ab232f154c9e3e7779aea351735a0417 */
+#container{position:relative;min-height:100%}#container,video{width:100%;height:100%}#playerContainer{overflow:hidden;position:relative;height:100%;background:#000}#videoHolder{position:relative;overflow:hidden}.fullscreen #playerContainer{position:absolute !important;width:100% !important;height:100%! important;z-index:9999;min-height:100%;top:0;left:0;margin:0}.mwEmbedPlayer{width:100%;height:100%;overflow:hidden;position:absolute;top:0;left:0}.modal_editor{ left:10px;top:10px;right:10px;bottom:10px;position:fixed;z-index:100}.displayHTML a:visited{color:white}.loadingSpinner{width:32px;height:32px;display:block;padding:0px;background-image:url(//bits.wikimedia.org/static-1.23wmf21/extensions/MwEmbedSupport/MwEmbedModules/MwEmbedSupport/skins/common/images/loading_ani.gif?2014-04-03T16:26:40Z)}.mw-imported-resource{border:thin solid black}.kaltura-icon{background-image:url(//bits.wikimedia.org/static-1.23wmf21/extensions/MwEmbedSupport/MwEmbedModules/MwEmbedSupport/skins/common/images/kaltura_logo_sm_transparent.png?2014-04-03T16:26:40Z) !important;background-repeat:no-repeat;display:block;height:12px;width:12px;margin-top:2px !important;margin-left:3px !important}.mw-fullscreen-overlay{background:rgb(0,0,0) none repeat scroll 0% 0%;position:fixed;top:0pt;left:0pt;width:100%;height:100%;-moz-background-clip:border;-moz-background-origin:padding;-moz-background-inline-policy:continuous} .play-btn-large{width:70px;height:53px;background :url(//bits.wikimedia.org/static-1.23wmf21/extensions/MwEmbedSupport/MwEmbedModules/MwEmbedSupport/skins/common/images/player_big_play_button.png?2014-04-03T16:26:40Z);position :absolute;cursor :pointer;border :none !important;z-index :1}.play-btn-large:hover{background :url(//bits.wikimedia.org/static-1.23wmf21/extensions/MwEmbedSupport/MwEmbedModules/MwEmbedSupport/skins/common/images/player_big_play_button_hover.png?2014-04-03T16:26:40Z)}.carouselContainer{position :absolute;width :100%;z-index :2}.carouselVideoTitle{position :absolute;top :0px;left :0px;width :100%;background :rgba(0,0,0,0.8);color :white;font-size :small;font-weight :bold;z-index :2}.carouselVideoTitleText{display :block;padding :10px 10px 10px 20px}.carouselTitleDuration{position :absolute;top :0px;right :0px;padding :2px;background-color :#5A5A5A;color :#D9D9D9;font-size :smaller;z-index :2}.carouselImgTitle{position :absolute;width :100%;text-align :center;color :white;font-size :small;background :rgba(0,0,0,0.4)}.carouselImgDuration{position :absolute;top :2px;left :2px;background :rgba( 0,0,0,0.7 );color :white;padding :1px 6px;font-size :small}.carouselPrevButton,.carouselNextButton{display :block;position :absolute;bottom:23px}.carouselPrevButton{left :5px}.carouselNextButton{right:6px}.alert-container{-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;background-image:linear-gradient(bottom,rgb(215,215,215) 4%,rgb(230,230,230) 55%,rgb(255,255,255) 100%);background-image:-o-linear-gradient(bottom,rgb(215,215,215) 4%,rgb(230,230,230) 55%,rgb(255,255,255) 100%);background-image:-moz-linear-gradient(bottom,rgb(215,215,215) 4%,rgb(230,230,230) 55%,rgb(255,255,255) 100%);background-image:-webkit-linear-gradient(bottom,rgb(215,215,215) 4%,rgb(230,230,230) 55%,rgb(255,255,255) 100%);background-image:-ms-linear-gradient(bottom,rgb(215,215,215) 4%,rgb(230,230,230) 55%,rgb(255,255,255) 100%);background-image:-webkit-gradient(linear,left bottom,left top,color-stop(0.04,rgb(215,215,215)),color-stop(0.55,rgb(230,230,230)),color-stop(1,rgb(255,255,255)));margin:auto;position:absolute;top:0;left:0;right:0;bottom:0;max-width:80%;max-height:30%}.alert-title{background-color :#E6E6E6;padding :5px;border-bottom :1px solid #D1D1D1;font-weight :normal !important;font-size:14px !important;-webkit-border-top-left-radius:3px;-moz-border-radius-topleft:3px;border-top-left-radius:3px;-webkit-border-top-right-radius:3px;-moz-border-radius-topright:3px;border-top-right-radius:3px }.alert-message{padding :5px;font-weight :normal !important;text-align:center;font-size:14px !important}.alert-buttons-container{text-align:center;padding-bottom:5px}.alert-button{background-color:#474747;color:white;-webkit-border-radius:.5em;-moz-border-radius:.5em;border-radius:.5em;padding:2px 10px;background-image:linear-gradient(bottom,rgb(25,25,25) 4%,rgb(47,47,47) 55%,rgb(71,71,71) 68%);background-image:-o-linear-gradient(bottom,rgb(25,25,25) 4%,rgb(47,47,47) 55%,rgb(71,71,71) 68%);background-image:-moz-linear-gradient(bottom,rgb(25,25,25) 4%,rgb(47,47,47) 55%,rgb(71,71,71) 68%);background-image:-webkit-linear-gradient(bottom,rgb(25,25,25) 4%,rgb(47,47,47) 55%,rgb(71,71,71) 68%);background-image:-ms-linear-gradient(bottom,rgb(25,25,25) 4%,rgb(47,47,47) 55%,rgb(71,71,71) 68%);background-image:-webkit-gradient( linear,left bottom,left top,color-stop(0.04,rgb(25,25,25)),color-stop(0.55,rgb(47,47,47)),color-stop(0.68,rgb(71,71,71)) )}.alert-text{color :black !important}
+/* cache key: eswiki:resourceloader:filter:minify-css:7:919509ed64ad61121a9b246134eefbe9 */
+.mw-mmv-overlay{position:fixed;top:0px;left:0px;right:0px;bottom:0px;z-index:1000;background-color:#000000}body.mw-mmv-lightbox-open{overflow-y:auto}body.mw-mmv-lightbox-open #mw-page-base,body.mw-mmv-lightbox-open #mw-head-base,body.mw-mmv-lightbox-open #mw-navigation,body.mw-mmv-lightbox-open #mw-footer,body.mw-mmv-lightbox-open #content{ display:none}body.mw-mmv-lightbox-open > :not(.mw-mmv-overlay,.mw-mmv-wrapper){ display:none}
+/* cache key: eswiki:resourceloader:filter:minify-css:7:bc05c88f937dc6f9c2258abefec0d1eb */</style><style>
+.suggestions a.mw-searchSuggest-link,.suggestions a.mw-searchSuggest-link:hover,.suggestions a.mw-searchSuggest-link:active,.suggestions a.mw-searchSuggest-link:focus{text-decoration:none;color:black}.suggestions-result-current a.mw-searchSuggest-link,.suggestions-result-current a.mw-searchSuggest-link:hover,.suggestions-result-current a.mw-searchSuggest-link:active,.suggestions-result-current a.mw-searchSuggest-link:focus{color:white}
+/* cache key: eswiki:resourceloader:filter:minify-css:7:52b1797f70c7e4094dfa4191101944e8 */</style><style>
+table.jquery-tablesorter th.headerSort{background-image:url(data:image/gif;base64,R0lGODlhFQAJAIABAAAAAAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjAgNjEuMTM0Nzc3LCAyMDEwLzAyLzEyLTE3OjMyOjAwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOjAxODAxMTc0MDcyMDY4MTE4OEM2REYyN0ExMDhBNDJFIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjdCNTAyODcwMEY4NjExRTBBMzkyQzAyM0E1RDk3RDc3IiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjdCNTAyODZGMEY4NjExRTBBMzkyQzAyM0E1RDk3RDc3IiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzUgTWFjaW50b3NoIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDE4MDExNzQwNzIwNjgxMTg4QzZERjI3QTEwOEE0MkUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MDE4MDExNzQwNzIwNjgxMTg4QzZERjI3QTEwOEE0MkUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4B//79/Pv6+fj39vX08/Lx8O/u7ezr6uno5+bl5OPi4eDf3t3c29rZ2NfW1dTT0tHQz87NzMvKycjHxsXEw8LBwL++vby7urm4t7a1tLOysbCvrq2sq6qpqKempaSjoqGgn56dnJuamZiXlpWUk5KRkI+OjYyLiomIh4aFhIOCgYB/fn18e3p5eHd2dXRzcnFwb25tbGtqaWhnZmVkY2JhYF9eXVxbWllYV1ZVVFNSUVBPTk1MS0pJSEdGRURDQkFAPz49PDs6OTg3NjU0MzIxMC8uLSwrKikoJyYlJCMiISAfHh0cGxoZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQBAAABACwAAAAAFQAJAAACF4yPgMsJ2mJ4VDKKrd4GVz5lYPeMiVUAADs=);background-image:url(//bits.wikimedia.org/static-1.23wmf21/resources/jquery/images/sort_both.gif?2014-04-03T16:21:40Z)!ie;cursor:pointer;background-repeat:no-repeat;background-position:center right;padding-right:21px}table.jquery-tablesorter th.headerSortUp{background-image:url(data:image/gif;base64,R0lGODlhFQAEAIABAAAAAAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjAgNjEuMTM0Nzc3LCAyMDEwLzAyLzEyLTE3OjMyOjAwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOjAzODAxMTc0MDcyMDY4MTE4OEM2REYyN0ExMDhBNDJFIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjdCNTAyODc0MEY4NjExRTBBMzkyQzAyM0E1RDk3RDc3IiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjdCNTAyODczMEY4NjExRTBBMzkyQzAyM0E1RDk3RDc3IiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzUgTWFjaW50b3NoIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDM4MDExNzQwNzIwNjgxMTg4QzZERjI3QTEwOEE0MkUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MDM4MDExNzQwNzIwNjgxMTg4QzZERjI3QTEwOEE0MkUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4B//79/Pv6+fj39vX08/Lx8O/u7ezr6uno5+bl5OPi4eDf3t3c29rZ2NfW1dTT0tHQz87NzMvKycjHxsXEw8LBwL++vby7urm4t7a1tLOysbCvrq2sq6qpqKempaSjoqGgn56dnJuamZiXlpWUk5KRkI+OjYyLiomIh4aFhIOCgYB/fn18e3p5eHd2dXRzcnFwb25tbGtqaWhnZmVkY2JhYF9eXVxbWllYV1ZVVFNSUVBPTk1MS0pJSEdGRURDQkFAPz49PDs6OTg3NjU0MzIxMC8uLSwrKikoJyYlJCMiISAfHh0cGxoZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQBAAABACwAAAAAFQAEAAACDYwfoAvoz9qbZ9FrJC0AOw==);background-image:url(//bits.wikimedia.org/static-1.23wmf21/resources/jquery/images/sort_up.gif?2014-04-03T16:21:40Z)!ie}table.jquery-tablesorter th.headerSortDown{background-image:url(data:image/gif;base64,R0lGODlhFQAEAIABAAAAAAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjAgNjEuMTM0Nzc3LCAyMDEwLzAyLzEyLTE3OjMyOjAwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOjAyODAxMTc0MDcyMDY4MTE4OEM2REYyN0ExMDhBNDJFIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjhFNzNGQjI3MEY4NjExRTBBMzkyQzAyM0E1RDk3RDc3IiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjhFNzNGQjI2MEY4NjExRTBBMzkyQzAyM0E1RDk3RDc3IiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzUgTWFjaW50b3NoIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDI4MDExNzQwNzIwNjgxMTg4QzZERjI3QTEwOEE0MkUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MDI4MDExNzQwNzIwNjgxMTg4QzZERjI3QTEwOEE0MkUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4B//79/Pv6+fj39vX08/Lx8O/u7ezr6uno5+bl5OPi4eDf3t3c29rZ2NfW1dTT0tHQz87NzMvKycjHxsXEw8LBwL++vby7urm4t7a1tLOysbCvrq2sq6qpqKempaSjoqGgn56dnJuamZiXlpWUk5KRkI+OjYyLiomIh4aFhIOCgYB/fn18e3p5eHd2dXRzcnFwb25tbGtqaWhnZmVkY2JhYF9eXVxbWllYV1ZVVFNSUVBPTk1MS0pJSEdGRURDQkFAPz49PDs6OTg3NjU0MzIxMC8uLSwrKikoJyYlJCMiISAfHh0cGxoZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQBAAABACwAAAAAFQAEAAACDYyPAcmtsJyDVDKKWQEAOw==);background-image:url(//bits.wikimedia.org/static-1.23wmf21/resources/jquery/images/sort_down.gif?2014-04-03T16:21:40Z)!ie}
+/* cache key: eswiki:resourceloader:filter:minify-css:7:70d64a90a5ce2c1b0df8554fc08f54ed */</style><meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29_archivos/load_002.css">
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: eswiki:resourceloader:filter:minify-css:7:3206b89f2017e25749cf87c7ccb3c126 */</style>
+
+<script src="Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29_archivos/load_003.php"></script><script src="Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29_archivos/load_004.php"></script><style title="spinjs"></style>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Strategy_(patrón_de_diseño)","wgTitle":"Strategy (patrón de diseño)","wgCurRevisionId":73313874,"wgRevisionId":73313874,"wgArticleId":61776,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Patrones de diseño"],"wgBreakFrames":false,"wgPageContentLanguage":"es","wgPageContentModel":"wikitext","wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"],"wgMonthNamesShort":["","ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"],"wgRelevantPageName":"Strategy_(patrón_de_diseño)","wgIsProbablyEditable":true,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgWikiEditorEnabledModules":{"toolbar":true,"dialogs":true,"hidesig":true,"templateEditor":false,"templates":false,"preview":false,"previewDialog":false,"publish":false,"toc":false},"wgBetaFeaturesFeatures":[],"wgMediaViewerOnClick":false,"wgVisualEditor":{"isPageWatched":false,"magnifyClipIconURL":"//bits.wikimedia.org/static-1.23wmf21/skins/common/images/magnify-clip.png","pageLanguageCode":"es","pageLanguageDir":"ltr","svgMaxSize":2048},"wgGuidedTourHelpGuiderUrl":"Help:Visitas guiadas/guía","wgULSAcceptLanguageList":["es-es","es","en"],"wgULSCurrentAutonym":"español","wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}","wgNoticeProject":"wikipedia","wgWikibaseItemId":"Q775349"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function(){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"editfont":"default","editondblclick":0,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"math":0,"minordefault":0,"newpageshidepatrolled":0,"nickname":"","norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"showhiddencats":false,"shownumberswatching":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":4,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":0,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,
+"wllimit":250,"useeditwarning":1,"prefershttps":1,"usebetatoolbar":1,"usebetatoolbar-cgd":1,"multimediaviewer-enable":true,"visualeditor-enable":0,"visualeditor-enable-experimental":0,"visualeditor-betatempdisable":0,"ep_showtoplink":false,"ep_bulkdelorgs":false,"ep_bulkdelcourses":true,"ep_showdyk":true,"echo-subscriptions-web-education-program":true,"echo-subscriptions-email-education-program":false,"echo-notify-show-link":true,"echo-show-alert":true,"echo-email-frequency":0,"echo-email-format":"html","echo-subscriptions-email-system":true,"echo-subscriptions-web-system":true,"echo-subscriptions-email-other":false,"echo-subscriptions-web-other":true,"echo-subscriptions-email-edit-user-talk":false,"echo-subscriptions-web-edit-user-talk":true,"echo-subscriptions-email-reverted":false,"echo-subscriptions-web-reverted":true,"echo-subscriptions-email-article-linked":false,"echo-subscriptions-web-article-linked":false,"echo-subscriptions-email-mention":false,
+"echo-subscriptions-web-mention":true,"echo-subscriptions-web-edit-thank":true,"echo-subscriptions-email-edit-thank":false,"gettingstarted-task-toolbar-show-intro":true,"uls-preferences":"","language":"es","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs100":true,"searchNs101":false,"searchNs102":false,"searchNs103":false,"searchNs104":true,"searchNs105":false,"searchNs446":false,"searchNs447":false,"searchNs828":false,"searchNs829":false,"gadget-a-commons-directo":1,"gadget-refToolbar":1,"gadget-imagenesinfobox":1,"variant":"es"});},{},{});mw.loader.implement("user.tokens"
+,function(){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":false});},{},{});
+/* cache key: eswiki:resourceloader:filter:minify-js:7:7f07d647b797cff64e417f468e1f0fa7 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","ext.centralauth.centralautologin","mmv.head","skins.vector.compactPersonalBar.defaultTracking","ext.visualEditor.viewPageTarget.init","ext.uls.init","ext.uls.interface","wikibase.client.init","ext.centralNotice.bannerController","skins.vector.js"]);
+}</script><script src="Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29_archivos/load_006.php"></script>
+<style type="text/css">/*<![CDATA[*/
+.source-java5 {line-height: normal;}
+.source-java5 li, .source-java5 pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for java5
+ * CSS class: source-java5, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.java5.source-java5 .de1, .java5.source-java5 .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;font-family: monospace, monospace;}
+.java5.source-java5  {font-family:monospace;}
+.java5.source-java5 .imp {font-weight: bold; color: red;}
+.java5.source-java5 li, .java5.source-java5 .li1 {font-weight: normal; vertical-align:top;}
+.java5.source-java5 .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.java5.source-java5 .li2 {font-weight: bold; vertical-align:top;}
+.java5.source-java5 .kw1 {color: #000000;  font-weight: bold;}
+.java5.source-java5 .kw2 {color: #000000; font-weight: bold;}
+.java5.source-java5 .kw3 {color: #006600; font-weight: bold;}
+.java5.source-java5 .kw4 {color: #006600; font-weight: bold;}
+.java5.source-java5 .kw5 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw6 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw7 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw8 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw9 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw10 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw11 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw12 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw13 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw14 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw15 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw16 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw17 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw18 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw19 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw20 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw21 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw22 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw23 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw24 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw25 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw26 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw27 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw28 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw29 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw30 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw31 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw32 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw33 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw34 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw35 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw36 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw37 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw38 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw39 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw40 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw41 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw42 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw43 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw44 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw45 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw46 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw47 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw48 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw49 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw50 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw51 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw52 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw53 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw54 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw55 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw56 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw57 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw58 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw59 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw60 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw61 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw62 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw63 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw64 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw65 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw66 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw67 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw68 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw69 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw70 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw71 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw72 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw73 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw74 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw75 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw76 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw77 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw78 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw79 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw80 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw81 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw82 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw83 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw84 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw85 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw86 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw87 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw88 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw89 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw90 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw91 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw92 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw93 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw94 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw95 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw96 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw97 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw98 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw99 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw100 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw101 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw102 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw103 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw104 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw105 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw106 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw107 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw108 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw109 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw110 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw111 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw112 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw113 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw114 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw115 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw116 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw117 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw118 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw119 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw120 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw121 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw122 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw123 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw124 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw125 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw126 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw127 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw128 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw129 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw130 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw131 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw132 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw133 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw134 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw135 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw136 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw137 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw138 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw139 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw140 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw141 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw142 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw143 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw144 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw145 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw146 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw147 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw148 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw149 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw150 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw151 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw152 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw153 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw154 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw155 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw156 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw157 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw158 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw159 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw160 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw161 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw162 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw163 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw164 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw165 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw166 {color: #003399; font-weight: bold;}
+.java5.source-java5 .co1 {color: #666666; font-style: italic;}
+.java5.source-java5 .co2 {color: #006699;}
+.java5.source-java5 .co3 {color: #008000; font-style: italic; font-weight: bold;}
+.java5.source-java5 .coMULTI {color: #666666; font-style: italic;}
+.java5.source-java5 .es0 {color: #000099; font-weight: bold;}
+.java5.source-java5 .br0 {color: #009900;}
+.java5.source-java5 .sy0 {color: #339933;}
+.java5.source-java5 .st0 {color: #0000ff;}
+.java5.source-java5 .nu0 {color: #cc66cc;}
+.java5.source-java5 .me1 {color: #006633;}
+.java5.source-java5 .me2 {color: #006633;}
+.java5.source-java5 .ln-xtra, .java5.source-java5 li.ln-xtra, .java5.source-java5 div.ln-xtra {background-color: #ffc;}
+.java5.source-java5 span.xtra { display:block; }
+
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-cpp {line-height: normal;}
+.source-cpp li, .source-cpp pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for cpp
+ * CSS class: source-cpp, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.cpp.source-cpp .de1, .cpp.source-cpp .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;font-family: monospace, monospace;}
+.cpp.source-cpp  {font-family:monospace;}
+.cpp.source-cpp .imp {font-weight: bold; color: red;}
+.cpp.source-cpp li, .cpp.source-cpp .li1 {font-weight: normal; vertical-align:top;}
+.cpp.source-cpp .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.cpp.source-cpp .li2 {font-weight: bold; vertical-align:top;}
+.cpp.source-cpp .kw1 {color: #0000ff;}
+.cpp.source-cpp .kw2 {color: #0000ff;}
+.cpp.source-cpp .kw3 {color: #0000dd;}
+.cpp.source-cpp .kw4 {color: #0000ff;}
+.cpp.source-cpp .co1 {color: #666666;}
+.cpp.source-cpp .co2 {color: #339900;}
+.cpp.source-cpp .coMULTI {color: #ff0000; font-style: italic;}
+.cpp.source-cpp .es0 {color: #000099; font-weight: bold;}
+.cpp.source-cpp .es1 {color: #000099; font-weight: bold;}
+.cpp.source-cpp .es2 {color: #660099; font-weight: bold;}
+.cpp.source-cpp .es3 {color: #660099; font-weight: bold;}
+.cpp.source-cpp .es4 {color: #660099; font-weight: bold;}
+.cpp.source-cpp .es5 {color: #006699; font-weight: bold;}
+.cpp.source-cpp .br0 {color: #008000;}
+.cpp.source-cpp .sy0 {color: #008000;}
+.cpp.source-cpp .sy1 {color: #000080;}
+.cpp.source-cpp .sy2 {color: #000040;}
+.cpp.source-cpp .sy3 {color: #000040;}
+.cpp.source-cpp .sy4 {color: #008080;}
+.cpp.source-cpp .st0 {color: #FF0000;}
+.cpp.source-cpp .nu0 {color: #0000dd;}
+.cpp.source-cpp .nu6 {color: #208080;}
+.cpp.source-cpp .nu8 {color: #208080;}
+.cpp.source-cpp .nu12 {color: #208080;}
+.cpp.source-cpp .nu16 {color:#800080;}
+.cpp.source-cpp .nu17 {color:#800080;}
+.cpp.source-cpp .nu18 {color:#800080;}
+.cpp.source-cpp .nu19 {color:#800080;}
+.cpp.source-cpp .me1 {color: #007788;}
+.cpp.source-cpp .me2 {color: #007788;}
+.cpp.source-cpp .ln-xtra, .cpp.source-cpp li.ln-xtra, .cpp.source-cpp div.ln-xtra {background-color: #ffc;}
+.cpp.source-cpp span.xtra { display:block; }
+
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-java {line-height: normal;}
+.source-java li, .source-java pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for java
+ * CSS class: source-java, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.java.source-java .de1, .java.source-java .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;font-family: monospace, monospace;}
+.java.source-java  {font-family:monospace;}
+.java.source-java .imp {font-weight: bold; color: red;}
+.java.source-java li, .java.source-java .li1 {font-weight: normal; vertical-align:top;}
+.java.source-java .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.java.source-java .li2 {font-weight: bold; vertical-align:top;}
+.java.source-java .kw1 {color: #000000; font-weight: bold;}
+.java.source-java .kw2 {color: #000066; font-weight: bold;}
+.java.source-java .kw3 {color: #003399;}
+.java.source-java .kw4 {color: #000066; font-weight: bold;}
+.java.source-java .co1 {color: #666666; font-style: italic;}
+.java.source-java .co2 {color: #006699;}
+.java.source-java .co3 {color: #008000; font-style: italic; font-weight: bold;}
+.java.source-java .coMULTI {color: #666666; font-style: italic;}
+.java.source-java .es0 {color: #000099; font-weight: bold;}
+.java.source-java .br0 {color: #009900;}
+.java.source-java .sy0 {color: #339933;}
+.java.source-java .st0 {color: #0000ff;}
+.java.source-java .nu0 {color: #cc66cc;}
+.java.source-java .me1 {color: #006633;}
+.java.source-java .me2 {color: #006633;}
+.java.source-java .ln-xtra, .java.source-java li.ln-xtra, .java.source-java div.ln-xtra {background-color: #ffc;}
+.java.source-java span.xtra { display:block; }
+
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-python {line-height: normal;}
+.source-python li, .source-python pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for python
+ * CSS class: source-python, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.python.source-python .de1, .python.source-python .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;font-family: monospace, monospace;}
+.python.source-python  {font-family:monospace;}
+.python.source-python .imp {font-weight: bold; color: red;}
+.python.source-python li, .python.source-python .li1 {font-weight: normal; vertical-align:top;}
+.python.source-python .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.python.source-python .li2 {font-weight: bold; vertical-align:top;}
+.python.source-python .kw1 {color: #ff7700;font-weight:bold;}
+.python.source-python .kw2 {color: #008000;}
+.python.source-python .kw3 {color: #dc143c;}
+.python.source-python .kw4 {color: #0000cd;}
+.python.source-python .co1 {color: #808080; font-style: italic;}
+.python.source-python .coMULTI {color: #808080; font-style: italic;}
+.python.source-python .es0 {color: #000099; font-weight: bold;}
+.python.source-python .br0 {color: black;}
+.python.source-python .sy0 {color: #66cc66;}
+.python.source-python .st0 {color: #483d8b;}
+.python.source-python .nu0 {color: #ff4500;}
+.python.source-python .me1 {color: black;}
+.python.source-python .ln-xtra, .python.source-python li.ln-xtra, .python.source-python div.ln-xtra {background-color: #ffc;}
+.python.source-python span.xtra { display:block; }
+
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-csharp {line-height: normal;}
+.source-csharp li, .source-csharp pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for csharp
+ * CSS class: source-csharp, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.csharp.source-csharp .de1, .csharp.source-csharp .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;font-family: monospace, monospace;}
+.csharp.source-csharp  {font-family:monospace;}
+.csharp.source-csharp .imp {font-weight: bold; color: red;}
+.csharp.source-csharp li, .csharp.source-csharp .li1 {font-weight: normal; vertical-align:top;}
+.csharp.source-csharp .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.csharp.source-csharp .li2 {font-weight: bold; vertical-align:top;}
+.csharp.source-csharp .kw1 {color: #0600FF; font-weight: bold;}
+.csharp.source-csharp .kw2 {color: #FF8000; font-weight: bold;}
+.csharp.source-csharp .kw3 {color: #008000;}
+.csharp.source-csharp .kw4 {color: #6666cc; font-weight: bold;}
+.csharp.source-csharp .kw5 {color: #000000;}
+.csharp.source-csharp .co1 {color: #008080; font-style: italic;}
+.csharp.source-csharp .co2 {color: #008080;}
+.csharp.source-csharp .co3 {color: #008080;}
+.csharp.source-csharp .coMULTI {color: #008080; font-style: italic;}
+.csharp.source-csharp .es0 {color: #008080; font-weight: bold;}
+.csharp.source-csharp .es_h {color: #008080; font-weight: bold;}
+.csharp.source-csharp .br0 {color: #008000;}
+.csharp.source-csharp .sy0 {color: #008000;}
+.csharp.source-csharp .st0 {color: #666666;}
+.csharp.source-csharp .st_h {color: #666666;}
+.csharp.source-csharp .nu0 {color: #FF0000;}
+.csharp.source-csharp .me1 {color: #0000FF;}
+.csharp.source-csharp .me2 {color: #0000FF;}
+.csharp.source-csharp .ln-xtra, .csharp.source-csharp li.ln-xtra, .csharp.source-csharp div.ln-xtra {background-color: #ffc;}
+.csharp.source-csharp span.xtra { display:block; }
+
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-actionscript {line-height: normal;}
+.source-actionscript li, .source-actionscript pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for actionscript
+ * CSS class: source-actionscript, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.actionscript.source-actionscript .de1, .actionscript.source-actionscript .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;font-family: monospace, monospace;}
+.actionscript.source-actionscript  {font-family:monospace;}
+.actionscript.source-actionscript .imp {font-weight: bold; color: red;}
+.actionscript.source-actionscript li, .actionscript.source-actionscript .li1 {font-weight: normal; vertical-align:top;}
+.actionscript.source-actionscript .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.actionscript.source-actionscript .li2 {font-weight: bold; vertical-align:top;}
+.actionscript.source-actionscript .kw1 {color: #b1b100;}
+.actionscript.source-actionscript .kw2 {color: #000000; font-weight: bold;}
+.actionscript.source-actionscript .kw3 {color: #0066CC;}
+.actionscript.source-actionscript .co1 {color: #808080; font-style: italic;}
+.actionscript.source-actionscript .co2 {color: #808080; font-style: italic;}
+.actionscript.source-actionscript .coMULTI {color: #808080; font-style: italic;}
+.actionscript.source-actionscript .es0 {color: #000099; font-weight: bold;}
+.actionscript.source-actionscript .br0 {color: #66cc66;}
+.actionscript.source-actionscript .sy0 {color: #66cc66;}
+.actionscript.source-actionscript .st0 {color: #ff0000;}
+.actionscript.source-actionscript .nu0 {color: #cc66cc;}
+.actionscript.source-actionscript .me1 {color: #006600;}
+.actionscript.source-actionscript .ln-xtra, .actionscript.source-actionscript li.ln-xtra, .actionscript.source-actionscript div.ln-xtra {background-color: #ffc;}
+.actionscript.source-actionscript span.xtra { display:block; }
+
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-php {line-height: normal;}
+.source-php li, .source-php pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for php
+ * CSS class: source-php, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.php.source-php .de1, .php.source-php .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;font-family: monospace, monospace;}
+.php.source-php  {font-family:monospace;}
+.php.source-php .imp {font-weight: bold; color: red;}
+.php.source-php li, .php.source-php .li1 {font-weight: normal; vertical-align:top;}
+.php.source-php .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.php.source-php .li2 {font-weight: bold; vertical-align:top;}
+.php.source-php .kw1 {color: #b1b100;}
+.php.source-php .kw2 {color: #000000; font-weight: bold;}
+.php.source-php .kw3 {color: #990000;}
+.php.source-php .kw4 {color: #009900; font-weight: bold;}
+.php.source-php .co1 {color: #666666; font-style: italic;}
+.php.source-php .co2 {color: #666666; font-style: italic;}
+.php.source-php .co3 {color: #0000cc; font-style: italic;}
+.php.source-php .co4 {color: #009933; font-style: italic;}
+.php.source-php .coMULTI {color: #666666; font-style: italic;}
+.php.source-php .es0 {color: #000099; font-weight: bold;}
+.php.source-php .es1 {color: #000099; font-weight: bold;}
+.php.source-php .es2 {color: #660099; font-weight: bold;}
+.php.source-php .es3 {color: #660099; font-weight: bold;}
+.php.source-php .es4 {color: #006699; font-weight: bold;}
+.php.source-php .es5 {color: #006699; font-weight: bold; font-style: italic;}
+.php.source-php .es6 {color: #009933; font-weight: bold;}
+.php.source-php .es_h {color: #000099; font-weight: bold;}
+.php.source-php .br0 {color: #009900;}
+.php.source-php .sy0 {color: #339933;}
+.php.source-php .sy1 {color: #000000; font-weight: bold;}
+.php.source-php .st0 {color: #0000ff;}
+.php.source-php .st_h {color: #0000ff;}
+.php.source-php .nu0 {color: #cc66cc;}
+.php.source-php .nu8 {color: #208080;}
+.php.source-php .nu12 {color: #208080;}
+.php.source-php .nu19 {color:#800080;}
+.php.source-php .me1 {color: #004000;}
+.php.source-php .me2 {color: #004000;}
+.php.source-php .re0 {color: #000088;}
+.php.source-php .ln-xtra, .php.source-php li.ln-xtra, .php.source-php div.ln-xtra {background-color: #ffc;}
+.php.source-php span.xtra { display:block; }
+
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-perl {line-height: normal;}
+.source-perl li, .source-perl pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for perl
+ * CSS class: source-perl, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.perl.source-perl .de1, .perl.source-perl .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;font-family: monospace, monospace;}
+.perl.source-perl  {font-family:monospace;}
+.perl.source-perl .imp {font-weight: bold; color: red;}
+.perl.source-perl li, .perl.source-perl .li1 {font-weight: normal; vertical-align:top;}
+.perl.source-perl .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.perl.source-perl .li2 {font-weight: bold; vertical-align:top;}
+.perl.source-perl .kw1 {color: #b1b100;}
+.perl.source-perl .kw2 {color: #000000; font-weight: bold;}
+.perl.source-perl .kw3 {color: #000066;}
+.perl.source-perl .co1 {color: #666666; font-style: italic;}
+.perl.source-perl .co2 {color: #009966; font-style: italic;}
+.perl.source-perl .co3 {color: #0000ff;}
+.perl.source-perl .co4 {color: #cc0000; font-style: italic;}
+.perl.source-perl .co5 {color: #0000ff;}
+.perl.source-perl .coMULTI {color: #666666; font-style: italic;}
+.perl.source-perl .es0 {color: #000099; font-weight: bold;}
+.perl.source-perl .es_h {color: #000099; font-weight: bold;}
+.perl.source-perl .br0 {color: #009900;}
+.perl.source-perl .sy0 {color: #339933;}
+.perl.source-perl .st0 {color: #ff0000;}
+.perl.source-perl .st_h {color: #ff0000;}
+.perl.source-perl .nu0 {color: #cc66cc;}
+.perl.source-perl .me1 {color: #006600;}
+.perl.source-perl .me2 {color: #006600;}
+.perl.source-perl .re0 {color: #0000ff;}
+.perl.source-perl .re4 {color: #009999;}
+.perl.source-perl .ln-xtra, .perl.source-perl li.ln-xtra, .perl.source-perl div.ln-xtra {background-color: #ffc;}
+.perl.source-perl span.xtra { display:block; }
+
+/*]]>*/
+</style><link rel="dns-prefetch" href="http://meta.wikimedia.org/"><!--[if lt IE 7]><style type="text/css">body{behavior:url("/w/static-1.23wmf21/skins/vector/csshover.min.htc")}</style><![endif]--><script type="text/javascript" src="Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29_archivos/index_003.php"></script><script type="text/javascript" src="Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29_archivos/index_005.php"></script><script type="text/javascript" src="Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29_archivos/index.php"></script></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Strategy_patrón_de_diseño skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<div id="siteNotice"><div id="centralNotice"></div><!-- CentralNotice --><script>document.write("\u003Cdiv id=\"localNotice\" lang=\"es\" dir=\"ltr\"\u003E\u003Cp style=\"display:none\"\u003E\u003C/p\u003E\n\u003C/div\u003E");</script><div id="localNotice" dir="ltr" lang="es"><p style="display:none"></p>
+</div></div>
+						<h1 id="firstHeading" class="firstHeading" lang="es"><span dir="auto">Strategy (patrón de diseño)</span></h1>
+						<div id="bodyContent">
+								<div id="siteSub">De Wikipedia, la enciclopedia libre</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					Saltar a:					<a href="#mw-navigation">navegación</a>, 					<a href="#p-search">búsqueda</a>
+				</div>
+				<div id="mw-content-text" dir="ltr" class="mw-content-ltr" lang="es"><div class="thumb tright">
+<div class="thumbinner" style="width:202px;"><a href="http://commons.wikimedia.org/wiki/File:Strategy_Pattern.jpg" class="image"><img alt="" src="Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29_archivos/200px-Strategy_Pattern.jpg" class="thumbimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/3/32/Strategy_Pattern.jpg/300px-Strategy_Pattern.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/3/32/Strategy_Pattern.jpg/400px-Strategy_Pattern.jpg 2x" height="71" width="200"></a>
+<div class="thumbcaption">
+<div class="magnify"><a href="http://es.wikipedia.org/wiki/Archivo:Strategy_Pattern.jpg" class="internal" title="Aumentar"><img src="Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29_archivos/magnify-clip.png" alt="" height="11" width="15"></a></div>
+Strategy Pattern in UML</div>
+</div>
+</div>
+<p>El patrón <b>Estrategia</b> (Strategy) es un <a href="http://es.wikipedia.org/wiki/Patr%C3%B3n_de_dise%C3%B1o" title="Patrón de diseño">patrón de diseño</a>
+ para el desarrollo de software. Se clasifica como patrón de 
+comportamiento porque determina como se debe realizar el intercambio de 
+mensajes entre diferentes objetos para resolver una tarea. El patrón 
+estrategia permite mantener un conjunto de algoritmos de entre los 
+cuales el objeto cliente puede elegir aquel que le conviene e 
+intercambiarlo dinámicamente según sus necesidades.</p>
+<p></p>
+<div id="toc" class="toc">
+<div id="toctitle">
+<h2>Índice</h2>
+<span class="toctoggle">&nbsp;[<a href="#" class="internal" id="togglelink">ocultar</a>]&nbsp;</span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Motivaci.C3.B3n"><span class="tocnumber">1</span> <span class="toctext">Motivación</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Aplicabilidad"><span class="tocnumber">2</span> <span class="toctext">Aplicabilidad</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Participantes"><span class="tocnumber">3</span> <span class="toctext">Participantes</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Colaboraciones"><span class="tocnumber">4</span> <span class="toctext">Colaboraciones</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Consecuencias"><span class="tocnumber">5</span> <span class="toctext">Consecuencias</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Implementaci.C3.B3n"><span class="tocnumber">6</span> <span class="toctext">Implementación</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Ejemplo"><span class="tocnumber">7</span> <span class="toctext">Ejemplo</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Ejemplos_en_varios_lenguajes"><span class="tocnumber">8</span> <span class="toctext">Ejemplos en varios lenguajes</span></a>
+<ul>
+<li class="toclevel-2 tocsection-9"><a href="#C.2B.2B"><span class="tocnumber">8.1</span> <span class="toctext">C++</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Java"><span class="tocnumber">8.2</span> <span class="toctext">Java</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Python"><span class="tocnumber">8.3</span> <span class="toctext">Python</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#C.23_3.0"><span class="tocnumber">8.4</span> <span class="toctext">C# 3.0</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#C.23"><span class="tocnumber">8.5</span> <span class="toctext">C#</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#ActionScript_3"><span class="tocnumber">8.6</span> <span class="toctext">ActionScript 3</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#PHP"><span class="tocnumber">8.7</span> <span class="toctext">PHP</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#Perl"><span class="tocnumber">8.8</span> <span class="toctext">Perl</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-17"><a href="#Enlaces_externos"><span class="tocnumber">9</span> <span class="toctext">Enlaces externos</span></a></li>
+</ul>
+</div>
+<p></p>
+<h2><span class="mw-headline" id="Motivaci.C3.B3n">Motivación</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://es.wikipedia.org/w/index.php?title=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;action=edit&amp;section=1" title="Editar sección: Motivación">editar</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Suponiendo un editor de textos con diferentes algoritmos para 
+particionar un texto en líneas (justificado, alineado a la izquierda, 
+etc.), se desea separar las clases clientes de los diferentes algoritmos
+ de partición, por diversos motivos:</p>
+<ul>
+<li>Incluir el código de los algoritmos en los clientes hace que éstos 
+sean demasiado grandes y complicados de mantener y/o extender.</li>
+<li>El cliente no va a necesitar todos los algoritmos en todos los 
+casos, de modo que no queremos que dicho cliente los almacene si no los 
+va a usar.</li>
+<li>Si existiesen clientes distintos que usasen los mismos algoritmos, 
+habría que duplicar el código, por tanto, esta situación no favorece la 
+reutilización.</li>
+</ul>
+<p>La solución que el patrón estrategia supone para este escenario pasa 
+por encapsular los distintos algoritmos en una jerarquía y que el 
+cliente trabaje contra un objeto intermediario contexto. El cliente 
+puede elegir el algoritmo que prefiera de entre los disponibles, o el 
+mismo contexto puede ser el que elija el más apropiado para cada 
+situación.</p>
+<h2><span class="mw-headline" id="Aplicabilidad">Aplicabilidad</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://es.wikipedia.org/w/index.php?title=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;action=edit&amp;section=2" title="Editar sección: Aplicabilidad">editar</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Cualquier programa que ofrezca un servicio o función determinada, que
+ pueda ser realizada de varias maneras, es candidato a utilizar el 
+patrón estrategia. Puede haber cualquier número de estrategias y 
+cualquiera de ellas podrá ser intercambiada por otra en cualquier 
+momento, incluso en tiempo de ejecución. Si muchas clases relacionadas 
+se diferencian únicamente por su comportamiento, se crea una superclase 
+que almacene el comportamiento común y que hará de interfaz hacia las 
+clases concretas.</p>
+<p>Si un algoritmo utiliza información que no deberían conocer los 
+clientes, la utilización del patrón estrategia evita la exposición de 
+dichas estructuras. Aplicando el patrón a una clase que defina múltiples
+ comportamientos mediante instrucciones condicionales, se evita emplear 
+estas instrucciones, moviendo el código a clases independientes donde se
+ almacenará cada estrategia.</p>
+<p>Efectivamente, como se comenta anteriormente, este patrón de diseño 
+nos sirve para intercambiar un sin número de estrategias posibles.</p>
+<h2><span class="mw-headline" id="Participantes">Participantes</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://es.wikipedia.org/w/index.php?title=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;action=edit&amp;section=3" title="Editar sección: Participantes">editar</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p><b>Contexto</b> (<i>Context</i>)&nbsp;: Es el elemento que usa los 
+algoritmos, por tanto, delega en la jerarquía de estrategias. Configura 
+una estrategia concreta mediante una referencia a la estrategia 
+necesaria. Puede definir una interfaz que permita a la estrategia el 
+acceso a sus datos en caso de que fuese necesario el intercambio de 
+información entre el contexto y la estrategia. En caso de no definir 
+dicha interfaz, el contexto podría pasarse a sí mismo a la estrategia 
+como parámetro.</p>
+<p><b>Estrategia</b> (<i>Strategy</i>): Declara una interfaz común para 
+todos los algoritmos soportados. Esta interfaz será usada por el 
+contexto para invocar a la estrategia concreta.</p>
+<p><b>EstrategiaConcreta</b> (<i>ConcreteStrategy</i>): Implementa el algoritmo utilizando la interfaz definida por la estrategia.</p>
+<h2><span class="mw-headline" id="Colaboraciones">Colaboraciones</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://es.wikipedia.org/w/index.php?title=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;action=edit&amp;section=4" title="Editar sección: Colaboraciones">editar</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Es necesario el intercambio de información entre estrategia y contexto. Este intercambio puede realizarse de dos maneras:</p>
+<ul>
+<li>Mediante parámetros en los métodos de la estrategia.</li>
+<li>Mandándose, el contexto, a sí mismo a la estrategia.</li>
+</ul>
+<p>Los clientes del contexto lo configuran con una estrategia concreta. A partir de ahí, solo se interactúa con el contexto.</p>
+<h2><span class="mw-headline" id="Consecuencias">Consecuencias</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://es.wikipedia.org/w/index.php?title=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;action=edit&amp;section=5" title="Editar sección: Consecuencias">editar</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>La herencia puede ayudar a factorizar las partes comunes de las 
+familias de algoritmos (sustituyendo el uso de bloques de instrucciones 
+condicionales). En este contexto es común la aparición conjunta de otros
+ patrones como el <a href="http://es.wikipedia.org/wiki/Template_Method_%28patr%C3%B3n_de_dise%C3%B1o%29" title="Template Method (patrón de diseño)">patrón plantilla</a>.</p>
+<p>El uso del patrón proporciona una alternativa a la extensión de 
+contextos, ya que puede realizarse un cambio dinámico de estrategia.</p>
+<p>Los clientes deben conocer las diferentes estrategias y debe comprender las posibilidades que ofrecen.</p>
+<p>Como contrapartida, aumenta el número de objetos creados, por lo que 
+se produce una penalización en la comunicación entre estrategia y 
+contexto (hay una indirección adicional).</p>
+<h2><span class="mw-headline" id="Implementaci.C3.B3n">Implementación</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://es.wikipedia.org/w/index.php?title=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;action=edit&amp;section=6" title="Editar sección: Implementación">editar</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Entre las posibilidades disponibles a la hora de definir la interfaz entre estrategia y contexto, están:</p>
+<ul>
+<li>Pasar como parámetro la información necesaria para la estrategia 
+implica un bajo acoplamiento y la posibilidad de envío de datos 
+innecesarios.</li>
+<li>Pasar como parámetro el contexto y dejar que la estrategia solicite 
+la información que necesita supone un alto acoplamiento entre ellos.</li>
+<li>Mantener en la estrategia una referencia al contexto (similar al anterior).</li>
+</ul>
+<p>También puede ocurrir que se creen y se utilicen los objetos 
+estrategia en el contexto sólo si es necesario, en tal caso las 
+estrategias serán opcionales.</p>
+<h2><span class="mw-headline" id="Ejemplo">Ejemplo</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://es.wikipedia.org/w/index.php?title=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;action=edit&amp;section=7" title="Editar sección: Ejemplo">editar</a><span class="mw-editsection-bracket">]</span></span></h2>
+<div class="center">
+<div class="thumb tnone">
+<div class="thumbinner" style="width:930px;"><a href="http://commons.wikimedia.org/wiki/File:DiagramaEjemplo.png" class="image"><img alt="" src="Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29_archivos/DiagramaEjemplo.png" class="thumbimage" height="311" width="928"></a>
+<div class="thumbcaption">Ejemplo de Patrón Strategy</div>
+</div>
+</div>
+</div>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr">
+<div class="java5 source-java5">
+<pre class="de1"><span class="kw2">public</span> <span class="kw2">abstract</span> <span class="kw2">class</span> EstrategiaDibujo <span class="kw2">extends</span> <span class="kw105">JFrame</span> <span class="br0">{</span>
+    <span class="kw2">private</span> <span class="kw3">float</span><span class="br0">[</span><span class="br0">]</span> _x,_y<span class="sy0">;</span>
+    <span class="kw2">private</span> <span class="kw6">Color</span> _c<span class="sy0">;</span>
+    <span class="kw2">private</span> <span class="kw3">int</span> _ancho,_alto<span class="sy0">;</span>
+ 
+    <span class="kw2">public</span> EstrategiaDibujo<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        ....
+    <span class="br0">}</span>
+ 
+    <span class="kw2">public</span> <span class="kw2">abstract</span> <span class="kw3">void</span> dibujar<span class="br0">(</span><span class="kw3">float</span><span class="br0">[</span><span class="br0">]</span> px, <span class="kw3">float</span><span class="br0">[</span><span class="br0">]</span> py<span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>
+</pre></div>
+</div>
+<p>Lo importante de esta clase es que cada una de las estrategias que diseñemos tendrá que sobrescribir el método <b>dibujar()</b> y proveer un algoritmo concreto para dicha estrategia.</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr">
+<div class="java5 source-java5">
+<pre class="de1"><span class="kw2">public</span> <span class="kw2">class</span> EstrategiaDibujoConcreta1 <span class="kw2">extends</span> EstrategiaDibujo<span class="br0">{</span>
+	...
+	<span class="kw2">public</span> <span class="kw3">void</span> dibujar<span class="br0">(</span><span class="kw3">float</span><span class="br0">[</span><span class="br0">]</span> px, <span class="kw3">float</span><span class="br0">[</span><span class="br0">]</span> py<span class="br0">)</span><span class="br0">{</span> ... <span class="br0">}</span>
+	...
+<span class="br0">}</span>
+</pre></div>
+</div>
+<p><br></p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr">
+<div class="java5 source-java5">
+<pre class="de1"> <span class="kw2">public</span> <span class="kw2">class</span> EstrategiaDibujoConcreta2 <span class="kw2">extends</span> EstrategiaDibujo<span class="br0">{</span>
+	...
+	<span class="kw2">public</span> <span class="kw3">void</span> dibujar<span class="br0">(</span><span class="kw3">float</span><span class="br0">[</span><span class="br0">]</span> px, <span class="kw3">float</span><span class="br0">[</span><span class="br0">]</span> py<span class="br0">)</span><span class="br0">{</span> ... <span class="br0">}</span>
+	...
+<span class="br0">}</span>
+</pre></div>
+</div>
+<p>El Contexto es la clase que decide qué estrategia utilizar en cada 
+momento, la decisión se puede realizar mediante algún parámetro que le 
+envía el cliente aunque como hemos dicho puede ser él mismo el que elija
+ la estrategia más adecuada&nbsp;:</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr">
+<div class="java5 source-java5">
+<pre class="de1"><span class="kw2">public</span> <span class="kw2">class</span> CreadorDibujos <span class="br0">{</span>
+    <span class="kw2">private</span> EstrategiaDibujo _estrategia<span class="sy0">;</span>
+    <span class="kw2">private</span> <span class="kw3">float</span><span class="br0">[</span><span class="br0">]</span> _x,_y<span class="sy0">;</span>
+ 
+    <span class="kw2">public</span> CreadorDibujos<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="co1">// Establecer estrategia por defecto.</span>
+    <span class="br0">}</span>
+ 
+    <span class="kw2">public</span> <span class="kw3">void</span> establecerDibujoBarras<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        _estrategia = <span class="kw2">new</span> EstrategiaDibujoConcreta1<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+ 
+    <span class="kw2">public</span> <span class="kw3">void</span> establecerDibujoLineas<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        _estrategia = <span class="kw2">new</span> EstrategiaDibujoConcreta2<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+ 
+    ..............
+ 
+    <span class="kw2">public</span> <span class="kw3">void</span> dibuja<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        _estrategia.<span class="me1">dibujar</span><span class="br0">(</span>_x,_y<span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+<span class="br0">}</span>
+</pre></div>
+</div>
+<p>Como podemos comprobar el funcionamiento de este patrón es muy simple
+ y el añadir nuevas estrategias a nuestro programa es muy sencillo y 
+apenas implica modificación de código alguna.</p>
+<h2><span class="mw-headline" id="Ejemplos_en_varios_lenguajes">Ejemplos en varios lenguajes</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://es.wikipedia.org/w/index.php?title=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;action=edit&amp;section=8" title="Editar sección: Ejemplos en varios lenguajes">editar</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h3><span class="mw-headline" id="C.2B.2B"><a href="http://es.wikipedia.org/wiki/C%2B%2B" title="C++">C++</a></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://es.wikipedia.org/w/index.php?title=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;action=edit&amp;section=9" title="Editar sección: C++">editar</a><span class="mw-editsection-bracket">]</span></span></h3>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr">
+<div class="cpp source-cpp">
+<pre class="de1"><span class="co2">#include &lt;iostream&gt;</span>
+ 
+<span class="kw2">using</span> <span class="kw2">namespace</span> std<span class="sy4">;</span>
+ 
+<span class="kw2">class</span> StrategyInterface
+<span class="br0">{</span>
+    <span class="kw2">public</span><span class="sy4">:</span>
+        <span class="kw2">virtual</span> <span class="kw4">void</span> execute<span class="br0">(</span><span class="br0">)</span> <span class="sy1">=</span> <span class="nu0">0</span><span class="sy4">;</span>
+<span class="br0">}</span><span class="sy4">;</span>
+ 
+<span class="kw2">class</span> ConcreteStrategyA<span class="sy4">:</span> <span class="kw2">public</span> StrategyInterface
+<span class="br0">{</span>
+    <span class="kw2">public</span><span class="sy4">:</span>
+        <span class="kw2">virtual</span> <span class="kw4">void</span> execute<span class="br0">(</span><span class="br0">)</span>
+        <span class="br0">{</span>
+            <span class="kw3">cout</span> <span class="sy1">&lt;&lt;</span> <span class="st0">"Called ConcreteStrategyA execute method"</span> <span class="sy1">&lt;&lt;</span> endl<span class="sy4">;</span>
+        <span class="br0">}</span>
+<span class="br0">}</span><span class="sy4">;</span>
+ 
+<span class="kw2">class</span> ConcreteStrategyB<span class="sy4">:</span> <span class="kw2">public</span> StrategyInterface
+<span class="br0">{</span>
+    <span class="kw2">public</span><span class="sy4">:</span>
+        <span class="kw2">virtual</span> <span class="kw4">void</span> execute<span class="br0">(</span><span class="br0">)</span>
+        <span class="br0">{</span>
+            <span class="kw3">cout</span> <span class="sy1">&lt;&lt;</span> <span class="st0">"Called ConcreteStrategyB execute method"</span> <span class="sy1">&lt;&lt;</span> endl<span class="sy4">;</span>
+        <span class="br0">}</span>
+<span class="br0">}</span><span class="sy4">;</span>
+ 
+<span class="kw2">class</span> ConcreteStrategyC<span class="sy4">:</span> <span class="kw2">public</span> StrategyInterface
+<span class="br0">{</span>
+    <span class="kw2">public</span><span class="sy4">:</span>
+        <span class="kw2">virtual</span> <span class="kw4">void</span> execute<span class="br0">(</span><span class="br0">)</span>
+        <span class="br0">{</span>
+            <span class="kw3">cout</span> <span class="sy1">&lt;&lt;</span> <span class="st0">"Called ConcreteStrategyC execute method"</span> <span class="sy1">&lt;&lt;</span> endl<span class="sy4">;</span>
+        <span class="br0">}</span>
+<span class="br0">}</span><span class="sy4">;</span>
+ 
+<span class="kw2">class</span> Context
+<span class="br0">{</span>
+    <span class="kw2">private</span><span class="sy4">:</span>
+        StrategyInterface <span class="sy2">*</span>_strategy<span class="sy4">;</span>
+ 
+    <span class="kw2">public</span><span class="sy4">:</span>
+        Context<span class="br0">(</span>StrategyInterface <span class="sy2">*</span>strategy<span class="br0">)</span><span class="sy4">:</span>_strategy<span class="br0">(</span>strategy<span class="br0">)</span>
+        <span class="br0">{</span>
+        <span class="br0">}</span>
+ 
+        <span class="kw4">void</span> set_strategy<span class="br0">(</span>StrategyInterface <span class="sy2">*</span>strategy<span class="br0">)</span>
+        <span class="br0">{</span>
+            _strategy <span class="sy1">=</span> strategy<span class="sy4">;</span>
+        <span class="br0">}</span>
+ 
+        <span class="kw4">void</span> execute<span class="br0">(</span><span class="br0">)</span>
+        <span class="br0">{</span>
+            _strategy<span class="sy2">-</span><span class="sy1">&gt;</span>execute<span class="br0">(</span><span class="br0">)</span><span class="sy4">;</span>
+        <span class="br0">}</span>
+<span class="br0">}</span><span class="sy4">;</span>
+ 
+<span class="kw4">int</span> main<span class="br0">(</span><span class="kw4">int</span> argc, <span class="kw4">char</span> <span class="sy2">*</span>argv<span class="br0">[</span><span class="br0">]</span><span class="br0">)</span>
+<span class="br0">{</span>
+    ConcreteStrategyA concreteStrategyA<span class="sy4">;</span>
+    ConcreteStrategyB concreteStrategyB<span class="sy4">;</span>
+    ConcreteStrategyC concreteStrategyC<span class="sy4">;</span>
+ 
+    Context contextA<span class="br0">(</span><span class="sy3">&amp;</span>concreteStrategyA<span class="br0">)</span><span class="sy4">;</span>
+    Context contextB<span class="br0">(</span><span class="sy3">&amp;</span>concreteStrategyB<span class="br0">)</span><span class="sy4">;</span>
+    Context contextC<span class="br0">(</span><span class="sy3">&amp;</span>concreteStrategyC<span class="br0">)</span><span class="sy4">;</span>
+ 
+    contextA.<span class="me1">execute</span><span class="br0">(</span><span class="br0">)</span><span class="sy4">;</span>
+    contextB.<span class="me1">execute</span><span class="br0">(</span><span class="br0">)</span><span class="sy4">;</span>
+    contextC.<span class="me1">execute</span><span class="br0">(</span><span class="br0">)</span><span class="sy4">;</span>
+ 
+    contextA.<span class="me1">set_strategy</span><span class="br0">(</span><span class="sy3">&amp;</span>concreteStrategyB<span class="br0">)</span><span class="sy4">;</span>
+    contextA.<span class="me1">execute</span><span class="br0">(</span><span class="br0">)</span><span class="sy4">;</span>
+    contextA.<span class="me1">set_strategy</span><span class="br0">(</span><span class="sy3">&amp;</span>concreteStrategyC<span class="br0">)</span><span class="sy4">;</span>
+    contextA.<span class="me1">execute</span><span class="br0">(</span><span class="br0">)</span><span class="sy4">;</span>
+ 
+    <span class="kw1">return</span> <span class="nu0">0</span><span class="sy4">;</span>
+<span class="br0">}</span>
+</pre></div>
+</div>
+<h3><span class="mw-headline" id="Java"><a href="http://es.wikipedia.org/wiki/Java_%28programming_language%29" title="Java (programming language)" class="mw-redirect">Java</a></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://es.wikipedia.org/w/index.php?title=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;action=edit&amp;section=10" title="Editar sección: Java">editar</a><span class="mw-editsection-bracket">]</span></span></h3>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr">
+<div class="java source-java">
+<pre class="de1"><span class="kw1">public</span> <span class="kw1">class</span> Main <span class="br0">{</span>	
+	<span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">void</span> main<span class="br0">(</span><span class="kw3">String</span> args<span class="br0">[</span><span class="br0">]</span><span class="br0">)</span>
+	<span class="br0">{</span>
+		<span class="co1">//Usamos la estrategia A</span>
+		Strategy estrategia_inicial <span class="sy0">=</span> <span class="kw1">new</span> StrategyA<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+		<span class="kw3">Context</span> context <span class="sy0">=</span> <span class="kw1">new</span> <span class="kw3">Context</span><span class="br0">(</span>estrategia_inicial<span class="br0">)</span><span class="sy0">;</span>
+		context.<span class="me1">some_method</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+ 
+		<span class="co1">//Decidimos usar la estrategia B</span>
+		Strategy estrategia2 <span class="sy0">=</span> <span class="kw1">new</span> StrategyB<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+		context.<span class="me1">setStrategy</span><span class="br0">(</span>estrategia2<span class="br0">)</span><span class="sy0">;</span>
+		context.<span class="me1">some_method</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+ 
+		<span class="co1">//Finalmente,usamos de nuevo la estrategia A</span>
+		context.<span class="me1">setStrategy</span><span class="br0">(</span>estrategia_inicial<span class="br0">)</span><span class="sy0">;</span>
+		context.<span class="me1">some_method</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+ 
+		<span class="co3">/** Salida:
+		 * Estrategia A
+		 * Estrategia B
+		 * Estrategia A
+		 **/</span>
+	<span class="br0">}</span>
+<span class="br0">}</span>
+ 
+ 
+<span class="kw1">public</span> <span class="kw1">class</span> <span class="kw3">Context</span> <span class="br0">{</span>
+	Strategy c<span class="sy0">;</span>
+ 
+	<span class="kw1">public</span> <span class="kw3">Context</span><span class="br0">(</span> Strategy c <span class="br0">)</span>
+	<span class="br0">{</span>
+		<span class="kw1">this</span>.<span class="me1">c</span> <span class="sy0">=</span> c<span class="sy0">;</span>
+	<span class="br0">}</span>
+ 
+	<span class="kw1">public</span> <span class="kw4">void</span> setStrategy<span class="br0">(</span>Strategy c<span class="br0">)</span> <span class="br0">{</span>
+		<span class="kw1">this</span>.<span class="me1">c</span> <span class="sy0">=</span> c<span class="sy0">;</span>
+	<span class="br0">}</span>
+ 
+	<span class="co1">//Metodo de estrategia 'c'</span>
+	<span class="kw1">public</span> <span class="kw4">void</span> some_method<span class="br0">(</span><span class="br0">)</span>
+	<span class="br0">{</span>
+		c.<span class="me1">Behaviour</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+	<span class="br0">}</span>
+<span class="br0">}</span>
+ 
+<span class="kw1">public</span> <span class="kw1">class</span> StrategyA <span class="kw1">implements</span> Strategy<span class="br0">{</span>
+	@Override
+	<span class="kw1">public</span> <span class="kw4">void</span> Behaviour<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+		<span class="kw3">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"Estrategia A"</span><span class="br0">)</span><span class="sy0">;</span>
+	<span class="br0">}</span>
+<span class="br0">}</span>
+ 
+<span class="kw1">public</span> <span class="kw1">class</span> StrategyB <span class="kw1">implements</span> Strategy<span class="br0">{</span>
+	@Override
+	<span class="kw1">public</span> <span class="kw4">void</span> Behaviour<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+		<span class="kw3">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"Estrategia B"</span><span class="br0">)</span><span class="sy0">;</span>
+	<span class="br0">}</span>
+<span class="br0">}</span>
+</pre></div>
+</div>
+<h3><span class="mw-headline" id="Python"><a href="http://es.wikipedia.org/wiki/Python" title="Python">Python</a></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://es.wikipedia.org/w/index.php?title=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;action=edit&amp;section=11" title="Editar sección: Python">editar</a><span class="mw-editsection-bracket">]</span></span></h3>
+<p>Python ya lo implementa internamente y no se puede programar explicitamente: Este es un ejemplo con GUI</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr">
+<div class="python source-python">
+<pre class="de1"><span class="kw1">class</span> Button:
+    <span class="st0">"""A very basic button widget."""</span>
+    <span class="kw1">def</span> <span class="kw4">__init__</span><span class="br0">(</span><span class="kw2">self</span><span class="sy0">,</span> submit_func<span class="sy0">,</span> label<span class="br0">)</span>:
+        <span class="kw2">self</span>.<span class="me1">on_submit</span> <span class="sy0">=</span> submit_func   <span class="co1"># Poner la funcion estrategia directamente</span>
+        <span class="kw2">self</span>.<span class="me1">label</span> <span class="sy0">=</span> label
+ 
+<span class="co1"># Se crean dos objetos con estrategias diferentes</span>
+button1 <span class="sy0">=</span> Button<span class="br0">(</span><span class="kw2">sum</span><span class="sy0">,</span> <span class="st0">"Add 'em"</span><span class="br0">)</span>
+button2 <span class="sy0">=</span> Button<span class="br0">(</span><span class="kw1">lambda</span> nums: <span class="st0">" "</span>.<span class="me1">join</span><span class="br0">(</span><span class="kw2">map</span><span class="br0">(</span><span class="kw2">str</span><span class="sy0">,</span> nums<span class="br0">)</span><span class="br0">)</span><span class="sy0">,</span> <span class="st0">"Join 'em"</span><span class="br0">)</span>
+ 
+<span class="co1"># Probamos cada boton</span>
+numbers <span class="sy0">=</span> <span class="kw2">range</span><span class="br0">(</span><span class="nu0">1</span><span class="sy0">,</span> <span class="nu0">10</span><span class="br0">)</span> <span class="co1"># Lista del 1 al 9</span>
+<span class="kw1">print</span> button1.<span class="me1">on_submit</span><span class="br0">(</span>numbers<span class="br0">)</span> <span class="co1"># muestra "45"</span>
+<span class="kw1">print</span> button2.<span class="me1">on_submit</span><span class="br0">(</span>numbers<span class="br0">)</span> <span class="co1"># muestra "1 2 3 4 5 6 7 8 9"</span>
+</pre></div>
+</div>
+<h3><span class="mw-headline" id="C.23_3.0"><a href="http://es.wikipedia.org/wiki/C_Sharp" title="C Sharp">C# 3.0</a></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://es.wikipedia.org/w/index.php?title=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;action=edit&amp;section=12" title="Editar sección: C# 3.0">editar</a><span class="mw-editsection-bracket">]</span></span></h3>
+<p>En C# 3.0, pueden usarse "expresiones lambda" para hacer lo mismo que en el ejemplo en Python.</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr">
+<div class="csharp source-csharp">
+<pre class="de1"><span class="kw1">using</span> <span class="co3">System</span><span class="sy0">;</span>
+<span class="kw1">using</span> <span class="co3">System.Collections.Generic</span><span class="sy0">;</span>
+<span class="kw1">using</span> <span class="co3">System.Linq</span><span class="sy0">;</span>
+ 
+<span class="kw4">class</span> Program
+<span class="br0">{</span>
+  <span class="kw1">static</span> <span class="kw4">void</span> Main<span class="br0">(</span><span class="kw4">string</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span>
+  <span class="br0">{</span>
+    <span class="kw1">var</span> button1 <span class="sy0">=</span> <span class="kw3">new</span> MyButton<span class="br0">(</span><span class="br0">(</span>x<span class="br0">)</span> <span class="sy0">=&gt;</span> x<span class="sy0">.</span><span class="me1">Sum</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">.</span><span class="me1">ToString</span><span class="br0">(</span><span class="br0">)</span>, <span class="st0">"Add 'em"</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw1">var</span> button2 <span class="sy0">=</span> <span class="kw3">new</span> MyButton<span class="br0">(</span><span class="br0">(</span>x<span class="br0">)</span> <span class="sy0">=&gt;</span> <span class="kw4">string</span><span class="sy0">.</span><span class="kw1">Join</span><span class="br0">(</span><span class="st0">" "</span>, x<span class="sy0">.</span><span class="kw1">Select</span><span class="br0">(</span>y <span class="sy0">=&gt;</span> y<span class="sy0">.</span><span class="me1">ToString</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">.</span><span class="me1">ToArray</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span>, <span class="st0">"Join 'em"</span><span class="br0">)</span><span class="sy0">;</span>
+ 
+    <span class="kw1">var</span> numbers <span class="sy0">=</span> Enumerable<span class="sy0">.</span><span class="me1">Range</span><span class="br0">(</span><span class="nu0">1</span>, <span class="nu0">10</span><span class="br0">)</span><span class="sy0">;</span>
+    Console<span class="sy0">.</span><span class="me1">WriteLine</span><span class="br0">(</span>button1<span class="sy0">.</span><span class="me1">Submit</span><span class="br0">(</span>numbers<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    Console<span class="sy0">.</span><span class="me1">WriteLine</span><span class="br0">(</span>button2<span class="sy0">.</span><span class="me1">Submit</span><span class="br0">(</span>numbers<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+ 
+    Console<span class="sy0">.</span><span class="me1">ReadLine</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+ 
+  <span class="kw1">public</span> <span class="kw4">class</span> MyButton
+  <span class="br0">{</span>
+    <span class="kw1">private</span> <span class="kw1">readonly</span> Func<span class="sy0">&lt;</span>IEnumerable<span class="sy0">&lt;</span><span class="kw4">int</span><span class="sy0">&gt;</span>, <span class="kw4">string</span><span class="sy0">&gt;</span> submitFunction<span class="sy0">;</span>
+    <span class="kw1">public</span> <span class="kw4">string</span> Label <span class="br0">{</span> <span class="kw1">get</span><span class="sy0">;</span> <span class="kw1">private</span> <span class="kw1">set</span><span class="sy0">;</span> <span class="br0">}</span>
+ 
+    <span class="kw1">public</span> MyButton<span class="br0">(</span>Func<span class="sy0">&lt;</span>IEnumerable<span class="sy0">&lt;</span><span class="kw4">int</span><span class="sy0">&gt;</span>, <span class="kw4">string</span><span class="sy0">&gt;</span> submitFunction, <span class="kw4">string</span> label<span class="br0">)</span>
+    <span class="br0">{</span>
+        <span class="kw1">this</span><span class="sy0">.</span><span class="me1">submitFunction</span> <span class="sy0">=</span> submitFunction<span class="sy0">;</span>
+        Label <span class="sy0">=</span> label<span class="sy0">;</span>
+    <span class="br0">}</span>
+ 
+    <span class="kw1">public</span> <span class="kw4">string</span> Submit<span class="br0">(</span>IEnumerable<span class="sy0">&lt;</span><span class="kw4">int</span><span class="sy0">&gt;</span> data<span class="br0">)</span>
+    <span class="br0">{</span>
+        <span class="kw1">return</span> submitFunction<span class="br0">(</span>data<span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+</pre></div>
+</div>
+<h3><span class="mw-headline" id="C.23"><a href="http://es.wikipedia.org/wiki/C_Sharp" title="C Sharp">C#</a></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://es.wikipedia.org/w/index.php?title=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;action=edit&amp;section=13" title="Editar sección: C#">editar</a><span class="mw-editsection-bracket">]</span></span></h3>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr">
+<div class="csharp source-csharp">
+<pre class="de1"><span class="kw1">using</span> <span class="co3">System</span><span class="sy0">;</span>
+ 
+<span class="kw1">namespace</span> Wikipedia<span class="sy0">.</span><span class="me1">Patterns</span><span class="sy0">.</span><span class="me1">Strategy</span>
+<span class="br0">{</span>
+  <span class="co1">// MainApp Test para aplicacion</span>
+  <span class="kw4">class</span> MainApp
+  <span class="br0">{</span>
+    <span class="kw1">static</span> <span class="kw4">void</span> Main<span class="br0">(</span><span class="br0">)</span>
+    <span class="br0">{</span>
+      Context context<span class="sy0">;</span>
+ 
+      <span class="co1">// Tres contextos con diferentes estrategias</span>
+      context <span class="sy0">=</span> <span class="kw3">new</span> Context<span class="br0">(</span><span class="kw3">new</span> ConcreteStrategyA<span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+      context<span class="sy0">.</span><span class="me1">Execute</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+ 
+      context <span class="sy0">=</span> <span class="kw3">new</span> Context<span class="br0">(</span><span class="kw3">new</span> ConcreteStrategyB<span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+      context<span class="sy0">.</span><span class="me1">Execute</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+ 
+      context <span class="sy0">=</span> <span class="kw3">new</span> Context<span class="br0">(</span><span class="kw3">new</span> ConcreteStrategyC<span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+      context<span class="sy0">.</span><span class="me1">Execute</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+ 
+    <span class="br0">}</span>
+  <span class="br0">}</span>
+ 
+  <span class="kw4">interface</span> IStrategy
+  <span class="br0">{</span>
+    <span class="kw4">void</span> Execute<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+ 
+  <span class="co1">// Implementa el algoritmo usando el patron estrategia</span>
+  <span class="kw4">class</span> ConcreteStrategyA <span class="sy0">:</span> IStrategy
+  <span class="br0">{</span>
+    <span class="kw1">public</span> <span class="kw4">void</span> Execute<span class="br0">(</span><span class="br0">)</span>
+    <span class="br0">{</span>
+      Console<span class="sy0">.</span><span class="me1">WriteLine</span><span class="br0">(</span> <span class="st0">"Called ConcreteStrategyA.Execute()"</span> <span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+  <span class="br0">}</span>
+ 
+  <span class="kw4">class</span> ConcreteStrategyB <span class="sy0">:</span> IStrategy
+  <span class="br0">{</span>
+    <span class="kw1">public</span> <span class="kw4">void</span> Execute<span class="br0">(</span><span class="br0">)</span>
+    <span class="br0">{</span>
+      Console<span class="sy0">.</span><span class="me1">WriteLine</span><span class="br0">(</span> <span class="st0">"Called ConcreteStrategyB.Execute()"</span> <span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+  <span class="br0">}</span>
+ 
+  <span class="kw4">class</span> ConcreteStrategyC <span class="sy0">:</span> IStrategy
+  <span class="br0">{</span>
+    <span class="kw1">public</span> <span class="kw4">void</span> Execute<span class="br0">(</span><span class="br0">)</span>
+    <span class="br0">{</span>
+      Console<span class="sy0">.</span><span class="me1">WriteLine</span><span class="br0">(</span> <span class="st0">"Called ConcreteStrategyC.Execute()"</span> <span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+  <span class="br0">}</span>
+ 
+  <span class="co1">// Contiene un objeto ConcreteStrategy y mantiene una referencia a un objeto Strategy</span>
+  <span class="kw4">class</span> Context
+  <span class="br0">{</span>
+    IStrategy strategy<span class="sy0">;</span>
+ 
+    <span class="co1">// Constructor</span>
+    <span class="kw1">public</span> Context<span class="br0">(</span>IStrategy strategy<span class="br0">)</span>
+    <span class="br0">{</span>
+      <span class="kw1">this</span><span class="sy0">.</span><span class="me1">strategy</span> <span class="sy0">=</span> strategy<span class="sy0">;</span>
+    <span class="br0">}</span>
+ 
+    <span class="kw1">public</span> <span class="kw4">void</span> Execute<span class="br0">(</span><span class="br0">)</span>
+    <span class="br0">{</span>
+      strategy<span class="sy0">.</span><span class="me1">Execute</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+</pre></div>
+</div>
+<h3><span class="mw-headline" id="ActionScript_3">ActionScript 3</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://es.wikipedia.org/w/index.php?title=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;action=edit&amp;section=14" title="Editar sección: ActionScript 3">editar</a><span class="mw-editsection-bracket">]</span></span></h3>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr">
+<div class="actionscript source-actionscript">
+<pre class="de1"><span class="co1">//invoked from application.initialize</span>
+<span class="kw3">private</span> <span class="kw2">function</span> init<span class="br0">(</span><span class="br0">)</span> : <span class="kw3">void</span>
+<span class="br0">{</span>
+    <span class="kw2">var</span> context:Context;
+ 
+    context = <span class="kw2">new</span> Context<span class="br0">(</span> <span class="kw2">new</span> ConcreteStrategyA<span class="br0">(</span><span class="br0">)</span> <span class="br0">)</span>;
+    context.<span class="me1">execute</span><span class="br0">(</span><span class="br0">)</span>;
+ 
+    context = <span class="kw2">new</span> Context<span class="br0">(</span> <span class="kw2">new</span> ConcreteStrategyB<span class="br0">(</span><span class="br0">)</span> <span class="br0">)</span>;
+    context.<span class="me1">execute</span><span class="br0">(</span><span class="br0">)</span>;
+ 
+    context = <span class="kw2">new</span> Context<span class="br0">(</span> <span class="kw2">new</span> ConcreteStrategyC<span class="br0">(</span><span class="br0">)</span> <span class="br0">)</span>;
+    context.<span class="me1">execute</span><span class="br0">(</span><span class="br0">)</span>;
+<span class="br0">}</span>
+ 
+package org.<span class="me1">wikipedia</span>.<span class="me1">patterns</span>.<span class="me1">strategy</span>
+<span class="br0">{</span>
+    <span class="kw3">public</span> <span class="kw3">interface</span> IStrategy
+    <span class="br0">{</span>
+	<span class="kw2">function</span> execute<span class="br0">(</span><span class="br0">)</span> : <span class="kw3">void</span> ;
+    <span class="br0">}</span>
+<span class="br0">}</span>
+ 
+package org.<span class="me1">wikipedia</span>.<span class="me1">patterns</span>.<span class="me1">strategy</span>
+<span class="br0">{</span>
+    <span class="kw3">public</span> final <span class="kw2">class</span> ConcreteStrategyA <span class="kw3">implements</span> IStrategy
+    <span class="br0">{</span>
+	<span class="kw3">public</span> <span class="kw2">function</span> execute<span class="br0">(</span><span class="br0">)</span>:<span class="kw3">void</span>
+	<span class="br0">{</span>
+	 <span class="kw3">trace</span><span class="br0">(</span> <span class="st0">"ConcreteStrategyA.execute(); invoked"</span> <span class="br0">)</span>;
+	<span class="br0">}</span>
+    <span class="br0">}</span>
+<span class="br0">}</span>
+ 
+package org.<span class="me1">wikipedia</span>.<span class="me1">patterns</span>.<span class="me1">strategy</span>
+<span class="br0">{</span>
+    <span class="kw3">public</span> final <span class="kw2">class</span> ConcreteStrategyB <span class="kw3">implements</span> IStrategy
+    <span class="br0">{</span>
+	<span class="kw3">public</span> <span class="kw2">function</span> execute<span class="br0">(</span><span class="br0">)</span>:<span class="kw3">void</span>
+	<span class="br0">{</span>
+	 <span class="kw3">trace</span><span class="br0">(</span> <span class="st0">"ConcreteStrategyB.execute(); invoked"</span> <span class="br0">)</span>;
+	<span class="br0">}</span>
+    <span class="br0">}</span>
+<span class="br0">}</span>
+ 
+package org.<span class="me1">wikipedia</span>.<span class="me1">patterns</span>.<span class="me1">strategy</span>
+<span class="br0">{</span>
+    <span class="kw3">public</span> final <span class="kw2">class</span> ConcreteStrategyC <span class="kw3">implements</span> IStrategy
+    <span class="br0">{</span>
+	<span class="kw3">public</span> <span class="kw2">function</span> execute<span class="br0">(</span><span class="br0">)</span>:<span class="kw3">void</span>
+	<span class="br0">{</span>
+	 <span class="kw3">trace</span><span class="br0">(</span> <span class="st0">"ConcreteStrategyC.execute(); invoked"</span> <span class="br0">)</span>;
+	<span class="br0">}</span>
+    <span class="br0">}</span>
+<span class="br0">}</span>
+ 
+package org.<span class="me1">wikipedia</span>.<span class="me1">patterns</span>.<span class="me1">strategy</span>
+<span class="br0">{</span>
+   <span class="kw3">public</span> <span class="kw2">class</span> Context
+   <span class="br0">{</span>
+	<span class="kw3">private</span> <span class="kw2">var</span> strategy:IStrategy;
+ 
+	<span class="kw3">public</span> <span class="kw2">function</span> Context<span class="br0">(</span>strategy:IStrategy<span class="br0">)</span>
+	<span class="br0">{</span>
+	 <span class="kw3">this</span>.<span class="me1">strategy</span> = strategy;
+	<span class="br0">}</span>
+ 
+	<span class="kw3">public</span> <span class="kw2">function</span> execute<span class="br0">(</span><span class="br0">)</span> : <span class="kw3">void</span>
+	<span class="br0">{</span> 
+             strategy.<span class="me1">execute</span><span class="br0">(</span><span class="br0">)</span>;
+	<span class="br0">}</span>
+    <span class="br0">}</span>
+<span class="br0">}</span>
+</pre></div>
+</div>
+<h3><span class="mw-headline" id="PHP"><a href="http://es.wikipedia.org/wiki/PHP" title="PHP">PHP</a></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://es.wikipedia.org/w/index.php?title=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;action=edit&amp;section=15" title="Editar sección: PHP">editar</a><span class="mw-editsection-bracket">]</span></span></h3>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr">
+<div class="php source-php">
+<pre class="de1"><span class="kw2">&lt;?php</span>
+<span class="kw2">class</span> StrategyExample <span class="br0">{</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> __construct<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="re0">$context</span> <span class="sy0">=</span> <span class="kw2">new</span> Context<span class="br0">(</span><span class="kw2">new</span> ConcreteStrategyA<span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+        <span class="re0">$context</span><span class="sy0">-&gt;</span><span class="me1">execute</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+ 
+        <span class="re0">$context</span> <span class="sy0">=</span> <span class="kw2">new</span> Context<span class="br0">(</span><span class="kw2">new</span> ConcreteStrategyB<span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+        <span class="re0">$context</span><span class="sy0">-&gt;</span><span class="me1">execute</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+ 
+        <span class="re0">$context</span> <span class="sy0">=</span> <span class="kw2">new</span> Context<span class="br0">(</span><span class="kw2">new</span> ConcreteStrategyC<span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+        <span class="re0">$context</span><span class="sy0">-&gt;</span><span class="me1">execute</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+<span class="br0">}</span>
+ 
+<span class="kw2">interface</span> IStrategy <span class="br0">{</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> execute<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>
+ 
+<span class="kw2">class</span> ConcreteStrategyA implements IStrategy <span class="br0">{</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> execute<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw1">echo</span> <span class="st0">"Called ConcreteStrategyA execute method<span class="es1">\n</span>"</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+<span class="br0">}</span>
+ 
+<span class="kw2">class</span> ConcreteStrategyB implements IStrategy <span class="br0">{</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> execute<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw1">echo</span> <span class="st0">"Called ConcreteStrategyB execute method<span class="es1">\n</span>"</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+<span class="br0">}</span>
+ 
+<span class="kw2">class</span> ConcreteStrategyC implements IStrategy <span class="br0">{</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> execute<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw1">echo</span> <span class="st0">"Called ConcreteStrategyC execute method<span class="es1">\n</span>"</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+<span class="br0">}</span>
+ 
+<span class="kw2">class</span> Context <span class="br0">{</span>
+    <span class="kw2">var</span> <span class="re0">$strategy</span><span class="sy0">;</span>
+ 
+    <span class="kw2">public</span> <span class="kw2">function</span> __construct<span class="br0">(</span>IStrategy <span class="re0">$strategy</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">strategy</span> <span class="sy0">=</span> <span class="re0">$strategy</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+ 
+    <span class="kw2">public</span> <span class="kw2">function</span> execute<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">strategy</span><span class="sy0">-&gt;</span><span class="me1">execute</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+<span class="br0">}</span>
+ 
+<span class="kw2">new</span> StrategyExample<span class="sy0">;</span>
+<span class="sy1">?&gt;</span>
+</pre></div>
+</div>
+<h3><span class="mw-headline" id="Perl"><a href="http://es.wikipedia.org/wiki/Perl" title="Perl">Perl</a></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://es.wikipedia.org/w/index.php?title=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;action=edit&amp;section=16" title="Editar sección: Perl">editar</a><span class="mw-editsection-bracket">]</span></span></h3>
+<p>Perl lo tiene ya implementado y no se puede programar explicitamente:</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr">
+<div class="perl source-perl">
+<pre class="de1"><span class="kw3">sort</span> <span class="br0">{</span> <span class="kw3">lc</span><span class="br0">(</span><span class="re0">$a</span><span class="br0">)</span> <span class="kw1">cmp</span> <span class="kw3">lc</span><span class="br0">(</span><span class="re0">$b</span><span class="br0">)</span> <span class="br0">}</span> <span class="re0">@items</span>
+</pre></div>
+</div>
+<p>El patrón de estrategia puede implementarse formalmente mediante <a href="http://es.wikipedia.org/w/index.php?title=Moose_%28Perl%29&amp;action=edit&amp;redlink=1" class="new" title="Moose (Perl) (aún no redactado)">Moose</a>:</p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr">
+<div class="perl source-perl">
+<pre class="de1"><span class="kw3">package</span> Strategy<span class="sy0">;</span>
+<span class="kw2">use</span> Moose<span class="sy0">::</span><span class="me2">Role</span><span class="sy0">;</span>
+requires <span class="st_h">'execute'</span><span class="sy0">;</span>
+ 
+ 
+<span class="kw3">package</span> FirstStrategy<span class="sy0">;</span>
+<span class="kw2">use</span> Moose<span class="sy0">;</span>
+with <span class="st_h">'Strategy'</span><span class="sy0">;</span>
+ 
+<span class="kw2">sub</span> execute <span class="br0">{</span>
+    <span class="kw3">print</span> <span class="st0">"Called FirstStrategy-&gt;execute()<span class="es0">\n</span>"</span><span class="sy0">;</span>
+<span class="br0">}</span>
+ 
+ 
+<span class="kw3">package</span> SecondStrategy<span class="sy0">;</span>
+<span class="kw2">use</span> Moose<span class="sy0">;</span>
+with <span class="st_h">'Strategy'</span><span class="sy0">;</span>
+ 
+<span class="kw2">sub</span> execute <span class="br0">{</span>
+    <span class="kw3">print</span> <span class="st0">"Called SecondStrategy-&gt;execute()<span class="es0">\n</span>"</span><span class="sy0">;</span>
+<span class="br0">}</span>
+ 
+ 
+<span class="kw3">package</span> ThirdStrategy<span class="sy0">;</span>
+<span class="kw2">use</span> Moose<span class="sy0">;</span>
+with <span class="st_h">'Strategy'</span><span class="sy0">;</span>
+ 
+<span class="kw2">sub</span> execute <span class="br0">{</span>
+    <span class="kw3">print</span> <span class="st0">"Called ThirdStrategy-&gt;execute()<span class="es0">\n</span>"</span><span class="sy0">;</span>
+<span class="br0">}</span>
+ 
+ 
+<span class="kw3">package</span> Context<span class="sy0">;</span>
+<span class="kw2">use</span> Moose<span class="sy0">;</span>
+ 
+has <span class="st_h">'strategy'</span> <span class="sy0">=&gt;</span> <span class="br0">(</span>
+    is <span class="sy0">=&gt;</span> <span class="st_h">'rw'</span><span class="sy0">,</span>
+    does <span class="sy0">=&gt;</span> <span class="st_h">'Strategy'</span><span class="sy0">,</span>
+    handles <span class="sy0">=&gt;</span> <span class="br0">[</span> <span class="st_h">'execute'</span> <span class="br0">]</span><span class="sy0">,</span>  <span class="co1"># automatic delegation</span>
+<span class="br0">)</span><span class="sy0">;</span>
+ 
+ 
+<span class="kw3">package</span> StrategyExample<span class="sy0">;</span>
+<span class="kw2">use</span> Moose<span class="sy0">;</span>
+ 
+<span class="co1"># Moose's constructor</span>
+<span class="kw2">sub</span> BUILD <span class="br0">{</span>
+    <span class="kw1">my</span> <span class="re0">$context</span><span class="sy0">;</span>
+ 
+    <span class="re0">$context</span> <span class="sy0">=</span> Context<span class="sy0">-&gt;</span><span class="kw2">new</span><span class="br0">(</span>strategy <span class="sy0">=&gt;</span> <span class="st_h">'FirstStrategy'</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="re0">$context</span><span class="sy0">-&gt;</span><span class="me1">execute</span><span class="sy0">;</span>
+ 
+    <span class="re0">$context</span> <span class="sy0">=</span> Context<span class="sy0">-&gt;</span><span class="kw2">new</span><span class="br0">(</span>strategy <span class="sy0">=&gt;</span> <span class="st_h">'SecondStrategy'</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="re0">$context</span><span class="sy0">-&gt;</span><span class="me1">execute</span><span class="sy0">;</span>
+ 
+    <span class="re0">$context</span> <span class="sy0">=</span> Context<span class="sy0">-&gt;</span><span class="kw2">new</span><span class="br0">(</span>strategy <span class="sy0">=&gt;</span> <span class="st_h">'ThirdStrategy'</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="re0">$context</span><span class="sy0">-&gt;</span><span class="me1">execute</span><span class="sy0">;</span>
+<span class="br0">}</span>
+ 
+ 
+<span class="kw3">package</span> main<span class="sy0">;</span>
+ 
+StrategyExample<span class="sy0">-&gt;</span><span class="kw2">new</span><span class="sy0">;</span>
+</pre></div>
+</div>
+<h2><span class="mw-headline" id="Enlaces_externos">Enlaces externos</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://es.wikipedia.org/w/index.php?title=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;action=edit&amp;section=17" title="Editar sección: Enlaces externos">editar</a><span class="mw-editsection-bracket">]</span></span></h2>
+<ul>
+<li><a rel="nofollow" class="external text" href="http://design-patterns-with-uml.blogspot.com.ar/2013/02/strategy-pattern.html">Patrón Strategy: explicación y diseño en UML</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.javaworld.com/javaworld/jw-04-2002/jw-0426-designpatterns.html">Strategy Pattern for Java article</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.webbiscuit.co.uk/articles/the-strategy-pattern/">Strategy Pattern for CSharp article</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.lepus.org.uk/ref/companion/Strategy.xml">Strategy pattern in UML and in LePUS3</a> (a formal modelling notation)</li>
+<li><a rel="nofollow" class="external text" href="http://martinfowler.com/refactoring/catalog/replaceTypeCodeWithStateStrategy.html">Refactoring: Replace Type Code with State/Strategy</a></li>
+<li><a rel="nofollow" class="external text" href="http://jcsis.wordpress.com/2014/03/18/patron-de-diseno-estrategia">Como modificar el objeto del contexto pasando parámetros con el patrón estrategia por Juan Camba</a></li>
+</ul>
+
+
+<!-- 
+NewPP limit report
+Parsed by mw1083
+CPU time usage: 0.844 seconds
+Real time usage: 0.893 seconds
+Preprocessor visited node count: 184/1000000
+Preprocessor generated node count: 332/1500000
+Post‐expand include size: 0/2048000 bytes
+Template argument size: 0/2048000 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/500
+-->
+
+<!-- Saved in parser cache with key eswiki:pcache:idhash:61776-0!*!0!!es!4!* and timestamp 20140321110019
+ -->
+<noscript><img src="//es.wikipedia.org/wiki/Special:CentralAutoLogin/start?type=1x1" alt="" title="" width="1" height="1" style="border: none; position: absolute;" /></noscript></div>								<div class="printfooter">
+				Obtenido de «<a href="http://es.wikipedia.org/w/index.php?title=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;oldid=73313874">http://es.wikipedia.org/w/index.php?title=Strategy_(patrón_de_diseño)&amp;oldid=73313874</a>»				</div>
+												<div id="catlinks" class="catlinks"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="http://es.wikipedia.org/wiki/Especial:Categor%C3%ADas" title="Especial:Categorías">Categoría</a>: <ul><li><a href="http://es.wikipedia.org/wiki/Categor%C3%ADa:Patrones_de_dise%C3%B1o" title="Categoría:Patrones de diseño">Patrones de diseño</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Menú de navegación</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Herramientas personales</h3>
+	<ul>
+<li id="pt-createaccount"><a href="http://es.wikipedia.org/w/index.php?title=Especial:Entrar&amp;returnto=Strategy+%28patr%C3%B3n+de+dise%C3%B1o%29&amp;type=signup">Crear una cuenta</a></li><li id="pt-login"><a href="http://es.wikipedia.org/w/index.php?title=Especial:Entrar&amp;returnto=Strategy+%28patr%C3%B3n+de+dise%C3%B1o%29" title="Te recomendamos iniciar sesión, sin embargo no es obligatorio [alt-shift-o]" accesskey="o">Iniciar sesión</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Espacios de nombres</h3>
+	<ul>
+					<li id="ca-nstab-main" class="selected"><span><a href="http://es.wikipedia.org/wiki/Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29" title="Ver el artículo [alt-shift-c]" accesskey="c">Artículo</a></span></li>
+					<li id="ca-talk"><span><a href="http://es.wikipedia.org/wiki/Discusi%C3%B3n:Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29" title="Discusión acerca del artículo [alt-shift-t]" accesskey="t">Discusión</a></span></li>
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 tabindex="0" id="p-variants-label"><span>Variantes</span><a tabindex="-1" href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Vistas</h3>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="http://es.wikipedia.org/wiki/Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29">Leer</a></span></li>
+					<li id="ca-edit"><span><a href="http://es.wikipedia.org/w/index.php?title=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;action=edit" title="Puedes editar esta página. Utiliza el botón de previsualización antes de guardar [alt-shift-e]" accesskey="e">Editar</a></span></li>
+					<li id="ca-history" class="collapsible"><span><a href="http://es.wikipedia.org/w/index.php?title=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;action=history" title="Versiones anteriores de esta página y sus autores [alt-shift-h]" accesskey="h">Ver historial</a></span></li>
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 tabindex="0" id="p-cactions-label"><span>Acciones</span><a tabindex="-1" href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Buscar</label></h3>
+	<form action="/w/index.php" id="searchform">
+					<div id="simpleSearch">
+					<input autocomplete="off" tabindex="1" name="search" placeholder="Buscar" title="Buscar en este wiki [alt-shift-f]" accesskey="f" id="searchInput" type="search"><input value="Especial:Buscar" name="title" type="hidden"><input name="go" value="Ir" title="Ir al artículo con este nombre exacto si existe" id="searchButton" class="searchButton" type="submit">		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div class="collapsible-nav" id="mw-panel">
+					<div id="p-logo" role="banner"><a style="background-image: url(&quot;//upload.wikimedia.org/wikipedia/commons/8/8c/Wikipedia-logo-v2-es.png&quot;);" href="http://es.wikipedia.org/wiki/Wikipedia:Portada" title="Visitar la página principal"></a></div>
+				<div class="portal first persistent" role="navigation" id="p-navigation" aria-labelledby="p-navigation-label">
+	<h3 id="p-navigation-label">Navegación</h3>
+	<div class="body">
+		<ul>
+			<li id="n-mainpage-description"><a href="http://es.wikipedia.org/wiki/Wikipedia:Portada" title="Visitar la página principal [alt-shift-z]" accesskey="z">Portada</a></li>
+			<li id="n-portal"><a href="http://es.wikipedia.org/wiki/Portal:Comunidad" title="Acerca del proyecto, lo que puedes hacer, dónde encontrar información">Portal de la comunidad</a></li>
+			<li id="n-currentevents"><a href="http://es.wikipedia.org/wiki/Portal:Actualidad" title="Información de contexto sobre acontecimientos actuales">Actualidad</a></li>
+			<li id="n-recentchanges"><a href="http://es.wikipedia.org/wiki/Especial:CambiosRecientes" title="Lista de cambios recientes en el wiki [alt-shift-r]" accesskey="r">Cambios recientes</a></li>
+			<li id="n-newpages"><a href="http://es.wikipedia.org/wiki/Especial:P%C3%A1ginasNuevas">Páginas nuevas</a></li>
+			<li id="n-randompage"><a href="http://es.wikipedia.org/wiki/Especial:Aleatoria" title="Cargar una página al azar [alt-shift-x]" accesskey="x">Página aleatoria</a></li>
+			<li id="n-help"><a href="http://es.wikipedia.org/wiki/Ayuda:Contenidos" title="El lugar para aprender">Ayuda</a></li>
+			<li id="n-sitesupport"><a href="http://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source=donate&amp;utm_medium=sidebar&amp;utm_campaign=C13_es.wikipedia.org&amp;uselang=es" title="Apóyanos">Donaciones</a></li>
+			<li id="n-bug_in_article"><a href="http://es.wikipedia.org/wiki/Wikipedia:Informes_de_error">Notificar un error</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal expanded" role="navigation" id="p-coll-print_export" aria-labelledby="p-coll-print_export-label">
+	<h3 tabindex="2" id="p-coll-print_export-label"><a aria-expanded="true" aria-pressed="true" role="button" aria-controls="p-coll-print_export-list" aria-haspopup="true" href="#">Imprimir/exportar</a></h3>
+	<div style="display: block;" class="body">
+		<ul id="p-coll-print_export-list">
+			<li id="coll-create_a_book"><a href="http://es.wikipedia.org/w/index.php?title=Especial:Libro&amp;bookcmd=book_creator&amp;referer=Strategy+%28patr%C3%B3n+de+dise%C3%B1o%29">Crear un libro</a></li>
+			<li id="coll-download-as-rl"><a href="http://es.wikipedia.org/w/index.php?title=Especial:Libro&amp;bookcmd=render_article&amp;arttitle=Strategy+%28patr%C3%B3n+de+dise%C3%B1o%29&amp;oldid=73313874&amp;writer=rl">Descargar como PDF</a></li>
+			<li id="t-print"><a href="http://es.wikipedia.org/w/index.php?title=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;printable=yes" title="Versión imprimible de esta página [alt-shift-p]" accesskey="p">Versión para imprimir</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal collapsed" role="navigation" id="p-tb" aria-labelledby="p-tb-label">
+	<h3 tabindex="3" id="p-tb-label"><a aria-expanded="false" aria-pressed="false" role="button" aria-controls="p-tb-list" aria-haspopup="true" href="#">Herramientas</a></h3>
+	<div class="body">
+		<ul id="p-tb-list">
+			<li id="t-whatlinkshere"><a href="http://es.wikipedia.org/wiki/Especial:LoQueEnlazaAqu%C3%AD/Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29" title="Lista de todas las páginas del wiki que enlazan aquí [alt-shift-j]" accesskey="j">Lo que enlaza aquí</a></li>
+			<li id="t-recentchangeslinked"><a href="http://es.wikipedia.org/wiki/Especial:CambiosEnEnlazadas/Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29" title="Cambios recientes en las páginas que enlazan con esta [alt-shift-k]" accesskey="k">Cambios en enlazadas</a></li>
+			<li id="t-upload"><a href="http://commons.wikimedia.org/wiki/Special:UploadWizard?uselang=es" title="Subir imágenes o archivos multimedia [alt-shift-u]" accesskey="u">Subir un archivo</a></li>
+			<li id="t-specialpages"><a href="http://es.wikipedia.org/wiki/Especial:P%C3%A1ginasEspeciales" title="Lista de todas las páginas especiales [alt-shift-q]" accesskey="q">Páginas especiales</a></li>
+			<li id="t-permalink"><a href="http://es.wikipedia.org/w/index.php?title=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;oldid=73313874" title="Enlace permanente a esta versión de la página">Enlace permanente</a></li>
+			<li id="t-info"><a href="http://es.wikipedia.org/w/index.php?title=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;action=info">Información de la página</a></li>
+			<li id="t-wikibase"><a href="http://www.wikidata.org/wiki/Q775349" title="Link to connected data repository item [alt-shift-g]" accesskey="g">Elemento de datos</a></li>
+<li id="t-cite"><a href="http://es.wikipedia.org/w/index.php?title=Especial:Citar&amp;page=Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29&amp;id=73313874" title="Información de como citar esta página">Citar este artículo</a></li>		</ul>
+	</div>
+</div>
+<div class="portal expanded" role="navigation" id="p-lang" aria-labelledby="p-lang-label"><span aria-haspopup="true" role="button" tabindex="0" title="Opciones de idioma" class="uls-settings-trigger"></span>
+	<h3 tabindex="4" id="p-lang-label"><a aria-expanded="true" aria-pressed="true" role="button" aria-controls="p-lang-list" aria-haspopup="true" href="#">En otros idiomas</a></h3>
+	<div style="display: block;" class="body">
+		<ul id="p-lang-list">
+			<li class="interlanguage-link interwiki-ar"><a href="http://ar.wikipedia.org/wiki/%D9%86%D9%85%D9%88%D8%B0%D8%AC_%D8%A7%D9%84%D8%A5%D8%B3%D8%AA%D8%B1%D8%A7%D8%AA%D9%8A%D8%AC%D9%8A%D8%A9" title="نموذج الإستراتيجية (árabe)" hreflang="ar" lang="ar">العربية</a></li>
+			<li class="interlanguage-link interwiki-bg"><a href="http://bg.wikipedia.org/wiki/%D0%A1%D1%82%D1%80%D0%B0%D1%82%D0%B5%D0%B3%D0%B8%D1%8F_%28%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%29" title="Стратегия (шаблон) (búlgaro)" hreflang="bg" lang="bg">Български</a></li>
+			<li class="interlanguage-link interwiki-ca"><a href="http://ca.wikipedia.org/wiki/Patr%C3%B3_estrat%C3%A8gia" title="Patró estratègia (catalán)" hreflang="ca" lang="ca">Català</a></li>
+			<li class="interlanguage-link interwiki-cs"><a href="http://cs.wikipedia.org/wiki/Strategy" title="Strategy (checo)" hreflang="cs" lang="cs">Čeština</a></li>
+			<li class="interlanguage-link interwiki-de"><a href="http://de.wikipedia.org/wiki/Strategie_%28Entwurfsmuster%29" title="Strategie (Entwurfsmuster) (alemán)" hreflang="de" lang="de">Deutsch</a></li>
+			<li class="interlanguage-link interwiki-en"><a href="http://en.wikipedia.org/wiki/Strategy_pattern" title="Strategy pattern (inglés)" hreflang="en" lang="en">English</a></li>
+			<li class="interlanguage-link interwiki-fr"><a href="http://fr.wikipedia.org/wiki/Strat%C3%A9gie_%28patron_de_conception%29" title="Stratégie (patron de conception) (francés)" hreflang="fr" lang="fr">Français</a></li>
+			<li class="interlanguage-link interwiki-gl"><a href="http://gl.wikipedia.org/wiki/Strategy_%28patr%C3%B3n_de_dese%C3%B1o%29" title="Strategy (patrón de deseño) (gallego)" hreflang="gl" lang="gl">Galego</a></li>
+			<li class="interlanguage-link interwiki-ia"><a href="http://ia.wikipedia.org/wiki/Strategia_%28patrono_de_designo%29" title="Strategia (patrono de designo) (interlingua)" hreflang="ia" lang="ia">Interlingua</a></li>
+			<li class="interlanguage-link interwiki-it"><a href="http://it.wikipedia.org/wiki/Strategy_pattern" title="Strategy pattern (italiano)" hreflang="it" lang="it">Italiano</a></li>
+			<li class="interlanguage-link interwiki-ja"><a href="http://ja.wikipedia.org/wiki/Strategy_%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3" title="Strategy パターン (japonés)" hreflang="ja" lang="ja">日本語</a></li>
+			<li class="interlanguage-link interwiki-pl"><a href="http://pl.wikipedia.org/wiki/Strategia_%28wzorzec_projektowy%29" title="Strategia (wzorzec projektowy) (polaco)" hreflang="pl" lang="pl">Polski</a></li>
+			<li class="interlanguage-link interwiki-pt"><a href="http://pt.wikipedia.org/wiki/Strategy" title="Strategy (portugués)" hreflang="pt" lang="pt">Português</a></li>
+			<li class="interlanguage-link interwiki-ru"><a href="http://ru.wikipedia.org/wiki/%D0%A1%D1%82%D1%80%D0%B0%D1%82%D0%B5%D0%B3%D0%B8%D1%8F_%28%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD_%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%29" title="Стратегия (шаблон проектирования) (ruso)" hreflang="ru" lang="ru">Русский</a></li>
+			<li class="interlanguage-link interwiki-uk"><a href="http://uk.wikipedia.org/wiki/%D0%A1%D1%82%D1%80%D0%B0%D1%82%D0%B5%D0%B3%D1%96%D1%8F_%28%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD_%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F%29" title="Стратегія (шаблон проектування) (ucraniano)" hreflang="uk" lang="uk">Українська</a></li>
+			<li class="interlanguage-link interwiki-vi"><a href="http://vi.wikipedia.org/wiki/Strategy_pattern" title="Strategy pattern (vietnamita)" hreflang="vi" lang="vi">Tiếng Việt</a></li>
+			<li class="interlanguage-link interwiki-zh"><a href="http://zh.wikipedia.org/wiki/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F" title="策略模式 (chino)" hreflang="zh" lang="zh">中文</a></li>
+			
+			<li class="wbc-editpage"><a href="http://www.wikidata.org/wiki/Q775349#sitelinks-wikipedia" title="Editar enlaces de interlengua">Editar los enlaces</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> Esta página fue modificada por última vez el 21 mar 2014, a las 11:00.</li>
+											<li id="footer-info-copyright">El texto está disponible bajo la <a rel="license" href="http://es.wikipedia.org/wiki/Wikipedia:Texto_de_la_Licencia_Creative_Commons_Atribuci%C3%B3n-CompartirIgual_3.0_Unported">Licencia Creative Commons Atribución Compartir Igual&nbsp;3.0</a><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/" style="display: none;"></a>;
+podrían ser aplicables cláusulas adicionales.
+Léanse los <a href="http://wikimediafoundation.org/wiki/T%C3%A9rminos_de_Uso">términos de uso</a> para más información.<br>
+Wikipedia® es una marca registrada de la <a href="http://www.wikimediafoundation.org/">Fundación Wikimedia, Inc.</a>, una organización sin ánimo de lucro.<br></li><li class="noprint"><a class="internal" href="http://es.wikipedia.org/wiki/Wikipedia:Contacto">Contacto</a></li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="http://wikimediafoundation.org/wiki/Pol%C3%ADtica_de_protecci%C3%B3n_de_datos_%28es%29" title="wikimedia:Política de protección de datos (es)">Política de privacidad</a></li>
+											<li id="footer-places-about"><a href="http://es.wikipedia.org/wiki/Wikipedia:Acerca_de" title="Wikipedia:Acerca de">Acerca de Wikipedia</a></li>
+											<li id="footer-places-disclaimer"><a href="http://es.wikipedia.org/wiki/Wikipedia:Limitaci%C3%B3n_general_de_responsabilidad" title="Wikipedia:Limitación general de responsabilidad">Limitación de responsabilidad</a></li>
+											<li id="footer-places-developers"><a class="external" href="https://www.mediawiki.org/wiki/Special:MyLanguage/How_to_contribute">Desarrolladores</a></li>
+											<li id="footer-places-mobileview"><a href="http://es.m.wikipedia.org/wiki/Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29" class="noprint stopMobileRedirectToggle">Versión para móviles</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://wikimediafoundation.org/"><img src="Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29_archivos/wikimedia-button.png" alt="Wikimedia Foundation" height="31" width="88"></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="http://www.mediawiki.org/"><img src="Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29_archivos/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" height="31" width="88"></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mobile.desktop","mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.gadget.a-commons-directo","ext.gadget.refToolbar","ext.gadget.imagenesinfobox","mw.MwEmbedSupport.style","mmv.bootstrap.autostart","ext.eventLogging.subscriber","ext.navigationTiming","schema.UniversalLanguageSelector","ext.uls.eventlogger","ext.uls.interlanguage","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script src="Strategy_%28patr%C3%B3n_de_dise%C3%B1o%29_archivos/load_005.php"></script>
+<!-- Served by mw1169 in 0.183 secs. -->
+	
+
+<div class="suggestions" style="display: none; font-size: 13px;"><div class="suggestions-results"></div><div class="suggestions-special"></div></div></body></html>
