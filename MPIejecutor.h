@@ -5,17 +5,15 @@
 #include <iostream>
 using namespace std;
 
-
 #include <string>
+
 class MPIejecutor : public ejecutor {
 public:
-	//MPIejecutor ( );
 
-	//virtual ~MPIejecutor ( );
-
-	virtual int ejecutar (int x, int y ){
-            cout << x << "+" << y << "=" << x+y << endl;
-            return x+y;            
+	virtual int ejecutar ( int (*funcion)(int, int) ){
+            int x=funcion(3,2);
+            cout << "Opcion MPI (" << x << ")" << endl;
+            return x;
         }
 
 };

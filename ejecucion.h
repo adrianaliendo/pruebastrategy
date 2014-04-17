@@ -19,22 +19,14 @@ public:
         
         }
 
-	//virtual ~ejecucion ( );
-
-	void setEjecutor ( ejecutor *estrategia/*, int op*/ ) {//string jsonfilename
-            /*switch (op){
-                case 0: MPIejecutor concreteStrategyA;
-                case 1: CUDAejecutor concreteStrategyB;
-                case 2: OpenMPejecutor concreteStrategyC;
-            }*/
+	void setEjecutor ( ejecutor *estrategia ) {//string jsonfilename
             m_estrategia=estrategia;
         }
 
-	void Ejecuta ( ){
-            m_estrategia->ejecutar(3,4);
+	void Ejecuta ( int (*funcion)(int , int) ){
+            m_estrategia->ejecutar(funcion);
         }
 
-     
 };
 
 #endif // EJECUCION_H
