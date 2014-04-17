@@ -5,6 +5,6 @@
 
 //MPIejecutor::~MPIejecutor ( ) { }
 
-virtual int MPIejecutor::ejecutar(int x, int y){
+/*virtual int MPIejecutor::ejecutar(int x, int y){
         return x+y;            
-}
+}*/

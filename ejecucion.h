@@ -4,6 +4,9 @@
 
 #include <string>
 #include "ejecutor.h"
+#include <iostream>
+using namespace std;
+
 
 class ejecucion{
 private:
@@ -12,13 +15,24 @@ private:
 public:
 
 	// Constructors/Destructors
-	ejecucion ( ejecutor *estrategia );
+	ejecucion ( ejecutor *estrategia ) : m_estrategia(estrategia){
+        
+        }
 
 	//virtual ~ejecucion ( );
 
-	void setEjecutor ( ejecutor *estrategia );//string jsonfilename
+	void setEjecutor ( ejecutor *estrategia/*, int op*/ ) {//string jsonfilename
+            /*switch (op){
+                case 0: MPIejecutor concreteStrategyA;
+                case 1: CUDAejecutor concreteStrategyB;
+                case 2: OpenMPejecutor concreteStrategyC;
+            }*/
+            m_estrategia=estrategia;
+        }
 
-	void Ejecuta ( );
+	void Ejecuta ( ){
+            m_estrategia->ejecutar(3,4);
+        }
 
      
 };

@@ -2,6 +2,8 @@
 #ifndef CUDAEJECUTOR_H
 #define CUDAEJECUTOR_H
 #include "ejecutor.h"
+#include <iostream>
+using namespace std;
 
 #include <string>
 /******************************* Abstract Class ****************************
@@ -13,7 +15,10 @@ CUDAejecutor does not have any pure virtual methods, but its author
 class CUDAejecutor : public ejecutor{
 public:
 
-	virtual int ejecutar (int x, int y );
+	int ejecutar (int x, int y ){
+                cout << x << "-" << y << "=" << x-y << endl;
+                return x-y;            
+        }
 
 };
 

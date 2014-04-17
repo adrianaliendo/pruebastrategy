@@ -3,6 +3,9 @@
 #define EJECUTOR_H
 
 #include <string>
+#include <iostream>
+using namespace std;
+
 
 
 
@@ -15,7 +18,7 @@ ejecutor does not have any pure virtual methods, but its author
 class ejecutor{
 public:
 
-	virtual void ejecutar ( ) = 0;
+	virtual int ejecutar (int x, int y ) = 0;
 
 };
 

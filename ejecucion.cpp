@@ -3,7 +3,7 @@
 // Constructors/Destructors
 //  
 
-ejecucion::ejecucion ( ejecutor *estrategia ) {
+/*ejecucion::ejecucion ( ejecutor *estrategia ) {
     
 }
 
@@ -23,4 +23,4 @@ void ejecucion::setEjecutor ( ejecutor *estrategia ) {//string jsonfilename
 public void Ejecuta() {
     m_estrategia->ejecutar( );
 }   
-
+*/
