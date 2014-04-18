@@ -23,8 +23,8 @@ public:
             m_estrategia=estrategia;
         }
 
-	void Ejecuta ( int (*funcion)(int , int) ){
-            m_estrategia->ejecutar(funcion);
+	void Ejecuta ( int (*funcion)(int , int), int x, int y ){
+            m_estrategia->ejecutar(funcion, x, y);
         }
 
 };

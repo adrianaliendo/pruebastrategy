@@ -10,8 +10,8 @@ using namespace std;
 class MPIejecutor : public ejecutor {
 public:
 
-	virtual int ejecutar ( int (*funcion)(int, int) ){
-            int x=funcion(3,2);
+	virtual int ejecutar ( int (*funcion)(int, int), int z, int y ){
+            int x=funcion(z,y);
             cout << "Opcion MPI (" << x << ")" << endl;
             return x;
         }

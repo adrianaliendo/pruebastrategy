@@ -10,7 +10,7 @@ using namespace std;
 class ejecutor{
 public:
 
-	virtual int ejecutar ( int (*funcion)(int, int) ) = 0;
+	virtual int ejecutar ( int (*funcion)(int, int), int, int ) = 0;
 
 };
 

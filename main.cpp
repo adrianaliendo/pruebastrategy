@@ -45,15 +45,15 @@ int main(int argc, char** argv) {
     //Defino el objeto que hara uso de la estrategia seleccionada
     para_determinar_estrategia=suma;
     ejecucion prueba(&muestraMPI); //Lo inicializo con la version para MPI
-    prueba.Ejecuta(para_determinar_estrategia);//Y se ejecuta
+    prueba.Ejecuta(para_determinar_estrategia,3,2);//Y se ejecuta
     
     para_determinar_estrategia=resta;
     //prueba.setEjecutor(&muestraCUDA); //Si ahora lo quiero ejecutar con otra estrategia, cambio el objeto ejecutor
-    prueba.Ejecuta(para_determinar_estrategia);
+    prueba.Ejecuta(para_determinar_estrategia,2,1);
     
     para_determinar_estrategia=mult;
     //prueba.setEjecutor(&muestraOpenMP);
-    prueba.Ejecuta(para_determinar_estrategia);
+    prueba.Ejecuta(para_determinar_estrategia,4,3);
  
     return 0;   
     
